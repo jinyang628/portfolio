@@ -67,3 +67,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ========================================== TAILWIND STYLES */
+@layer utilities {
+  /* ===== UTILITIES */
+
+  .card-title {
+    @apply text-center text-2xl;
+  }
+
+  .fade {
+    @apply transition-opacity duration-1000;
+  }
+}

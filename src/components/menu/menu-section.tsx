@@ -6,24 +6,43 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useEffect } from "react";
 
 type MenuSectionProps = {
-  showContent: boolean;
+  showCards: boolean;
 };
 
-export default function MenuSection({ showContent }: MenuSectionProps) {
+export default function MenuSection({ showCards }: MenuSectionProps) {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>I am an entrepreneur at heart</CardTitle>
-        <CardDescription>Card Description</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>Card Content</p>
-      </CardContent>
-      <CardFooter>
-        <p>Card Footer</p>
-      </CardFooter>
-    </Card>
+    <div
+      className={`fade ${showCards ? "opacity-100" : "opacity-0"} mt-4 text-center`}
+    >
+      <div className="flex space-x-16 p-4 mt-4">
+        <Card className="flex-1 p-4">
+          <CardHeader className="card-title">
+            <CardTitle>I am an entrepreneur at heart</CardTitle>
+            <CardDescription>Card Description</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p>Card Content</p>
+          </CardContent>
+          <CardFooter>
+            <p>Card Footer</p>
+          </CardFooter>
+        </Card>
+        <Card className="flex-1 p-4">
+          <CardHeader className="card-title">
+            <CardTitle>I have many strong opinions loosely held</CardTitle>
+            <CardDescription>Card Description</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p>Card Content</p>
+          </CardContent>
+          <CardFooter>
+            <p>Card Footer</p>
+          </CardFooter>
+        </Card>
+      </div>
+    </div>
   );
 }

@@ -1,11 +1,11 @@
 import Typewriter from "typewriter-effect";
 
 type TitleProps = {
-  showContent: boolean;
+  showIntro: boolean;
   updateShowContent: () => void;
 };
 
-export default function Title({ showContent, updateShowContent }: TitleProps) {
+export default function Title({ showIntro, updateShowContent }: TitleProps) {
   const INTRO_TEXT: string = "Hello! I am Jin Yang";
 
   return (
@@ -27,7 +27,7 @@ export default function Title({ showContent, updateShowContent }: TitleProps) {
         }}
       />
       <p
-        className={`transition-opacity text-3xl duration-1000 ${showContent ? "opacity-100" : "opacity-0"} mt-4 text-center`}
+        className={`fade text-3xl mt-4 text-center ${showIntro ? "opacity-100" : "opacity-0"}`}
       >
         Here are some things that define who I am
       </p>
