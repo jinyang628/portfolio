@@ -76,6 +76,10 @@
     @apply text-center text-2xl;
   }
 
+  .card-description {
+    @apply text-lg;
+  }
+
   .fade {
     @apply transition-opacity duration-1000;
   }

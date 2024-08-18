@@ -28,7 +28,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col h-screen w-full p-8">
+    <div className="flex flex-col h-screen w-full p-8 min-w-[72rem]">
       <HeaderButtons />
       <Title showIntro={showIntro} updateShowContent={updateShowContent} />
       <MenuSection showCards={showCards} />
