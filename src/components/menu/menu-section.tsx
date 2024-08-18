@@ -26,7 +26,10 @@ import {
               <CardDescription className="card-description">Check out some of my projects!</CardDescription>
             </CardHeader>
             <CardContent className="grid grid-cols-3 gap-4">
-              <Link href={ROUTE.whale}>
+              <Link 
+                href={ROUTE.whale}
+                className={`flex-1 ${showCards ? "cursor-pointer" : "cursor-default"} ${!showCards && "pointer-events-none"}`}
+              >
                 <Image
                   src="/project-images/whale.png"
                   alt="Whale"
@@ -34,7 +37,10 @@ import {
                   height={500}
                 />
               </Link>
-              <Link href={ROUTE.stillHuman}>
+              <Link 
+                href={ROUTE.stillHuman}
+                className={`flex-1 ${showCards ? "cursor-pointer" : "cursor-default"} ${!showCards && "pointer-events-none"}`}
+              >
                 <Image
                   src="/project-images/still-human.png"
                   alt="Still Human"
@@ -42,7 +48,10 @@ import {
                   height={500}
                 />
               </Link>
-              <Link href={ROUTE.tripFlow}>
+              <Link 
+                href={ROUTE.tripFlow}
+                className={`flex-1 ${showCards ? "cursor-pointer" : "cursor-default"} ${!showCards && "pointer-events-none"}`}
+              >
                 <Image
                   src="/project-images/tripflow.png"
                   alt="TripFlow"
