@@ -26,24 +26,30 @@ import {
               <CardDescription className="card-description">Check out some of my projects!</CardDescription>
             </CardHeader>
             <CardContent className="grid grid-cols-3 gap-4">
-              <Image
-                src="/path-to-reflections-image.jpg"
-                alt="Whale"
-                width={500}
-                height={300}
-              />
-              <Image
-                src="/path-to-reflections-image.jpg"
-                alt="Still Human"
-                width={500}
-                height={300}
-              />
-              <Image
-                src="/path-to-reflections-image.jpg"
-                alt="TripFlow"
-                width={500}
-                height={300}
-              />
+              <Link href={ROUTE.whale}>
+                <Image
+                  src="/project-images/whale.png"
+                  alt="Whale"
+                  width={500}
+                  height={500}
+                />
+              </Link>
+              <Link href={ROUTE.stillHuman}>
+                <Image
+                  src="/project-images/still-human.png"
+                  alt="Still Human"
+                  width={500}
+                  height={500}
+                />
+              </Link>
+              <Link href={ROUTE.tripFlow}>
+                <Image
+                  src="/project-images/tripflow.png"
+                  alt="TripFlow"
+                  width={500}
+                  height={500}
+                />
+              </Link>
             </CardContent>
           </Card>
           <Card className="p-4 w-[48%]">
