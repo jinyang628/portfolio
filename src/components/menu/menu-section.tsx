@@ -19,8 +19,8 @@ import {
         className={`fade ${showCards ? "opacity-100" : "opacity-0"} mt-4 text-center`}
       >
         <div className="flex space-x-16 p-4 mt-4">
-          <Link href={ROUTE.projects} className="flex-1">
-            <Card className="p-4 cursor-pointer">
+          <Link href={showCards ? ROUTE.projects : "#"} className={`flex-1 ${showCards ? "cursor-pointer" : "cursor-default"} ${!showCards && "pointer-events-none"}`}>
+            <Card className="p-4">
               <CardHeader className="card-title">
                 <CardTitle>I am an entrepreneur at heart</CardTitle>
                 <CardDescription>Card Description</CardDescription>
@@ -33,8 +33,8 @@ import {
               </CardFooter>
             </Card>
           </Link>
-          <Link href={ROUTE.reflections} className="flex-1">
-            <Card className="p-4 cursor-pointer">
+          <Link href={showCards ? ROUTE.projects : "#"} className={`flex-1 ${showCards ? "cursor-pointer" : "cursor-default"} ${!showCards && "pointer-events-none"}`}>
+            <Card className="p-4">
               <CardHeader className="card-title">
                 <CardTitle>I have many strong opinions loosely held</CardTitle>
                 <CardDescription>Card Description</CardDescription>
