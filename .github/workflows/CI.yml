@@ -29,11 +29,3 @@ jobs:
 
       - name: Run Prettier
         run: npx prettier --check .
-
-    #   - name: Run Jest tests
-    #     working-directory: ./frontend
-    #     run: npm run test
-
-    # - name: Build
-    #   working-directory: ./frontend
-    #   run: npm run build --verbose
