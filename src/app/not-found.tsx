@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { ROUTE } from '@/constants/route';
 
-import HeaderButtons from '@/components/shared/header/header-buttons';
+import HeaderButtons from '@/components/shared/header/buttons';
 
 import '@/styles/globals.css';
 

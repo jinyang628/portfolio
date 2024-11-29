@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import LanguagesSection from '@/components/languages/languages-section';
 import MenuSection from '@/components/menu/menu-section';
-import HeaderButtons from '@/components/shared/header/header-buttons';
+import HeaderButtons from '@/components/shared/header/buttons';
 import TechStackSection from '@/components/tech-stack/tech-stack';
 import Title from '@/components/title';
 
