@@ -1,5 +1,6 @@
-import React from "react";
-import { ThemeToggle } from "../theme/theme-toggle";
+import React from 'react';
+
+import { ThemeToggle } from '../theme/theme-toggle';
 
 export default function HeaderButtons() {
   return (
