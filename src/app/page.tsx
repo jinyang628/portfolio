@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import LanguagesSection from "@/components/languages/languages-section";
-import MenuSection from "@/components/menu/menu-section";
-import HeaderButtons from "@/components/shared/header/header-buttons";
-import TechStackSection from "@/components/tech-stack/tech-stack";
-import Title from "@/components/title";
+import { useState } from 'react';
 
-import { useState } from "react";
+import LanguagesSection from '@/components/languages/languages-section';
+import MenuSection from '@/components/menu/menu-section';
+import HeaderButtons from '@/components/shared/header/header-buttons';
+import TechStackSection from '@/components/tech-stack/tech-stack';
+import Title from '@/components/title';
 
 export default function Home() {
   const [showIntro, setShowIntro] = useState<boolean>(false);
