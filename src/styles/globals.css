@@ -83,4 +83,12 @@
   .fade {
     @apply transition-opacity duration-1000;
   }
+
+  .side-nav-bar-btn:hover {
+    background-color: transparent !important;
+  }
+
+  .side-nav-bar-icon {
+    @apply mr-2 h-6 w-6;
+  }
 }
