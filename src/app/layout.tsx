@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import HeaderButtons from '@/components/shared/header/buttons';
+import { QueryProvider } from '@/components/shared/query-provider';
 import { ThemeProvider } from '@/components/shared/theme/provider';
 import { Toaster } from '@/components/ui/toaster';
 
@@ -35,11 +36,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex flex-col h-screen w-full p-8 min-w-[72rem]">
-            <HeaderButtons />
-            {children}
-          </div>
-          <Toaster />
+          <QueryProvider>
+            <div className="flex flex-col h-screen w-full p-8 min-w-[72rem]">
+              <HeaderButtons />
+              {children}
+            </div>
+            <Toaster />
+          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>
