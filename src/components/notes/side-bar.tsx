@@ -1,10 +1,11 @@
 import { FaGithub } from 'react-icons/fa';
 import { SiFastapi } from 'react-icons/si';
 
+import CategoryDropdown from '@/components/notes/category-dropdown';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
+
 import { Category, Notes } from '@/types/database/notes';
-import CategoryDropdown from '@/components/notes/category-dropdown';
 
 type NotesSideBarProps = {
   notes: Notes[];
@@ -12,7 +13,11 @@ type NotesSideBarProps = {
   onCategoryClick: (category: Category) => void;
 };
 
-export default function NotesSideBar({ notes, selectedCategory, onCategoryClick }: NotesSideBarProps) {
+export default function NotesSideBar({
+  notes,
+  selectedCategory,
+  onCategoryClick,
+}: NotesSideBarProps) {
   return (
     <ScrollArea className="border-r h-full">
       <div className="w-[250px] flex flex-col justify-center space-y-2">

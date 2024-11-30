@@ -1,15 +1,19 @@
-"use client";
+'use client';
 
-import { get } from "@/actions/database/get";
-import { queryClient } from "@/components/shared/query-provider";
-import { GET } from "@/database/client";
-import { logger } from "@/lib/logger";
-import { getRequestSchema } from "@/types/actions/database/get";
-import { tableNameEnum } from "@/types/database/base";
-import { Category, Notes } from "@/types/database/notes";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { table } from "console";
-import { useState } from "react";
+import { useState } from 'react';
+
+import { get } from '@/actions/database/get';
+import { GET } from '@/database/client';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { table } from 'console';
+
+import { queryClient } from '@/components/shared/query-provider';
+
+import { getRequestSchema } from '@/types/actions/database/get';
+import { tableNameEnum } from '@/types/database/base';
+import { Category, Notes } from '@/types/database/notes';
+
+import { logger } from '@/lib/logger';
 
 interface useNotesOptions {
   data: Notes[];
@@ -17,18 +21,18 @@ interface useNotesOptions {
   successMessage: string;
   error: Error | null;
   refetch: () => Promise<any>;
-//   postProfileMutation: any;
-//   updateProfileMutation: any;
+  //   postProfileMutation: any;
+  //   updateProfileMutation: any;
 }
 
 interface useNotesProps {
-    id: number | null;
-    category: Category | null;
+  id: number | null;
+  category: Category | null;
 }
 
 export default function useNotes({ id, category }: useNotesProps): useNotesOptions {
   const [error, setError] = useState<Error | null>(null);
-  const [successMessage, setSuccessMessage] = useState<string>("");
+  const [successMessage, setSuccessMessage] = useState<string>('');
 
   const {
     data,
@@ -36,7 +40,7 @@ export default function useNotes({ id, category }: useNotesProps): useNotesOptio
     error: queryError,
     refetch,
   } = useQuery({
-    queryKey: ["loadNotes", id, category],
+    queryKey: ['loadNotes', id, category],
     queryFn: async () => {
       try {
         const filterConditions: Partial<Notes> = {};
@@ -47,13 +51,13 @@ export default function useNotes({ id, category }: useNotesProps): useNotesOptio
           filterConditions.category = category;
         }
         const getRequest = getRequestSchema.parse({
-            tableName: tableNameEnum.Values.notes, 
-            filterConditions: filterConditions
-        })
+          tableName: tableNameEnum.Values.notes,
+          filterConditions: filterConditions,
+        });
         const notes: Notes[] = await get(getRequest);
         return notes;
       } catch (err) {
-        setError(new Error("Failed to load notes"));
+        setError(new Error('Failed to load notes'));
         return null;
       }
     },
@@ -61,43 +65,43 @@ export default function useNotes({ id, category }: useNotesProps): useNotesOptio
     retry: 1,
   });
 
-//   const postMutation = useMutation({
-//     mutationFn: async (profile: Profile) =>
-//       sendProfile(profile, actionEnum.Values.create),
-//     mutationKey: ["createProfile"],
-//     onMutate: async (profile: Profile) => {
-//       await queryClient.cancelQueries({ queryKey: ["loadProfile"] });
-//       queryClient.setQueryData<Profile>(["loadProfile"], profile);
-//       return profile;
-//     },
-//     onSuccess: (data, profile, context) => {
-//       setSuccessMessage("Successfully created profile");
-//       return data;
-//     },
-//     onError: (err, profile, context) => {
-//       setMutationError(new Error("Failed to create profile"));
-//       queryClient.setQueryData<Profile>(["loadProfile"], profile);
-//     },
-//   });
+  //   const postMutation = useMutation({
+  //     mutationFn: async (profile: Profile) =>
+  //       sendProfile(profile, actionEnum.Values.create),
+  //     mutationKey: ["createProfile"],
+  //     onMutate: async (profile: Profile) => {
+  //       await queryClient.cancelQueries({ queryKey: ["loadProfile"] });
+  //       queryClient.setQueryData<Profile>(["loadProfile"], profile);
+  //       return profile;
+  //     },
+  //     onSuccess: (data, profile, context) => {
+  //       setSuccessMessage("Successfully created profile");
+  //       return data;
+  //     },
+  //     onError: (err, profile, context) => {
+  //       setMutationError(new Error("Failed to create profile"));
+  //       queryClient.setQueryData<Profile>(["loadProfile"], profile);
+  //     },
+  //   });
 
-//   const updateMutation = useMutation({
-//     mutationFn: async (profile: Profile) =>
-//       sendProfile(profile, actionEnum.Values.update),
-//     mutationKey: ["updateProfile"],
-//     onMutate: async (profile: Profile) => {
-//       await queryClient.cancelQueries({ queryKey: ["loadProfile"] });
-//       queryClient.setQueryData<Profile>(["loadProfile"], profile);
-//       return profile;
-//     },
-//     onSuccess: (data, profile, context) => {
-//       setSuccessMessage("Successfully updated profile");
-//       return data;
-//     },
-//     onError: (err, profile, context) => {
-//       setMutationError(new Error("Failed to update profile"));
-//       queryClient.setQueryData<Profile>(["loadProfile"], profile);
-//     },
-//   });
+  //   const updateMutation = useMutation({
+  //     mutationFn: async (profile: Profile) =>
+  //       sendProfile(profile, actionEnum.Values.update),
+  //     mutationKey: ["updateProfile"],
+  //     onMutate: async (profile: Profile) => {
+  //       await queryClient.cancelQueries({ queryKey: ["loadProfile"] });
+  //       queryClient.setQueryData<Profile>(["loadProfile"], profile);
+  //       return profile;
+  //     },
+  //     onSuccess: (data, profile, context) => {
+  //       setSuccessMessage("Successfully updated profile");
+  //       return data;
+  //     },
+  //     onError: (err, profile, context) => {
+  //       setMutationError(new Error("Failed to update profile"));
+  //       queryClient.setQueryData<Profile>(["loadProfile"], profile);
+  //     },
+  //   });
 
   return {
     data: data || [],
