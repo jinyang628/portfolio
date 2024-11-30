@@ -1,28 +1,31 @@
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
-import { Database, Tables } from "@/database/database.types";
+import { Database, Tables } from '@/database/database.types';
+import { SupabaseClient, createClient } from '@supabase/supabase-js';
+
+import { logger } from '@/lib/logger';
 
 let supabaseClient: SupabaseClient | null = null;
 
 export async function getSupabaseClient(): Promise<SupabaseClient> {
   if (!supabaseClient) {
     const supabaseKey: string | undefined = process.env.SUPABASE_KEY;
+    console.log(supabaseKey);
     if (!supabaseKey) {
-      throw new Error("SUPABASE_KEY is not set");
+      const errorMessage: string = 'SUPABASE_KEY is not set';
+      logger.error(errorMessage);
+      throw new Error(errorMessage);
     }
     const supabaseUrl: string | undefined = process.env.SUPABASE_URL;
     if (!supabaseUrl) {
-      throw new Error("SUPABASE_URL is not set");
+      const errorMessage: string = 'SUPABASE_URL is not set';
+      logger.error(errorMessage);
+      throw new Error(errorMessage);
     }
-    supabaseClient = createClient(
-      supabaseUrl,
-      supabaseKey,
-    );
+    supabaseClient = createClient(supabaseUrl, supabaseKey);
   }
   return supabaseClient;
 }
 
-export type Notes = Tables<"notes">;
-type TableName = keyof Database["public"]["Tables"];
+type TableName = keyof Database['public']['Tables'];
 type Row<T extends TableName> = Tables<T>;
 
 export async function GET<T extends TableName>(
@@ -30,17 +33,25 @@ export async function GET<T extends TableName>(
   filterConditions?: Partial<Row<T>>,
 ): Promise<Row<T>[]> {
   // const users = await GET("users", { gender: "male" });
+  logger.info(
+    `GET request invoked on ${tableName} with filter conditions: ${JSON.stringify(filterConditions)}`,
+  );
 
   const client = await getSupabaseClient();
-  let query = client.from(tableName).select("*");
+  console.log('CLIENT');
+  console.log(client);
+  let query = client.from(tableName).select('*');
 
   if (filterConditions) {
     Object.entries(filterConditions).forEach(([column, value]) => {
       query = query.eq(column, value);
     });
   }
-
+  console.log('QUERY');
+  console.log(query);
   const { data, error } = await query;
+  console.log('DATA');
+  console.log(data);
 
   if (error) {
     throw error;
@@ -61,15 +72,10 @@ export async function POST<T extends TableName>(
   const client = await getSupabaseClient();
 
   const filteredData = data.map((row) =>
-    Object.fromEntries(
-      Object.entries(row).filter(([_, value]) => value != null),
-    ),
+    Object.fromEntries(Object.entries(row).filter(([_, value]) => value != null)),
   );
 
-  const { data: insertedData, error } = await client
-    .from(tableName)
-    .insert(filteredData)
-    .select();
+  const { data: insertedData, error } = await client.from(tableName).insert(filteredData).select();
 
   if (error) {
     throw error;
