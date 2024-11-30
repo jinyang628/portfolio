@@ -10,7 +10,7 @@ export const pdfStateSchema = z.object({
 export type PdfState = z.infer<typeof pdfStateSchema>;
 export const defaultPdfState: PdfState = {
   imageSrc: '',
-  isLoading: false,
+  isLoading: true,
 };
 
 export const pdfDocumentEnum = z.enum(['CV']);
