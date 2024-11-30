@@ -5,17 +5,12 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface ScreenshotSectionProps {
   imageSrc: string;
-  isScreenshotLoading: boolean;
 }
 
-export default function ScreenshotSection({
-  imageSrc,
-  isScreenshotLoading,
-}: ScreenshotSectionProps) {
-  const screenshot =
-    // eslint-disable-next-line no-nested-ternary
-    !isScreenshotLoading && imageSrc ? (
-      <ScrollArea className="h-full w-full rounded-md border">
+export default function ScreenshotSection({ imageSrc }: ScreenshotSectionProps) {
+  const screenshot = (
+    <ScrollArea className="h-full w-full rounded-md border">
+      {imageSrc ? (
         <Image
           src={imageSrc}
           alt="Screenshot"
@@ -24,10 +19,11 @@ export default function ScreenshotSection({
           sizes="100vw"
           style={{ width: '100%', height: 'auto' }}
         />
-      </ScrollArea>
-    ) : (
-      <ShimmerEffect />
-    );
+      ) : (
+        <ShimmerEffect />
+      )}
+    </ScrollArea>
+  );
 
   return <div className="h-full">{screenshot}</div>;
 }

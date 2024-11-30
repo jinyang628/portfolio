@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import ScreenshotSection from '@/components/cv/screenshot';
+import PageLoader from '@/components/shared/page-loading-indicator';
 
 import { CV_PDF_PATH, PdfState, defaultPdfState, pdfDocumentEnum } from '@/types/pdf';
 
@@ -36,9 +37,13 @@ export default function CV() {
     loadCV();
   }, []);
 
+  if (pdfState.isLoading) {
+    return <PageLoader />;
+  }
+
   return (
     <div className="flex justify-center m-5 max-h-[80%]">
-      <ScreenshotSection imageSrc={pdfState.imageSrc} isScreenshotLoading={pdfState.isLoading} />
+      <ScreenshotSection imageSrc={pdfState.imageSrc} />
     </div>
   );
 }
