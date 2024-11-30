@@ -30,6 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <script
+          type="module"
+          defer
+          src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/spiral.js"
+        ></script>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -37,9 +42,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <QueryProvider>
-            <div className="flex flex-col h-screen w-full p-8 min-w-[72rem]">
+            <div className="flex flex-col h-screen w-full p-8">
               <HeaderButtons />
-              {children}
+              <div className="min-w-[30rem] h-full">{children}</div>
             </div>
             <Toaster />
           </QueryProvider>

@@ -3,17 +3,13 @@
 import { useState } from 'react';
 
 import { get } from '@/actions/database/get';
-import { GET } from '@/database/client';
+import { post } from '@/actions/database/post';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { table } from 'console';
-
-import { queryClient } from '@/components/shared/query-provider';
 
 import { getRequestSchema } from '@/types/actions/database/get';
+import { postRequestSchema } from '@/types/actions/database/post';
 import { tableNameEnum } from '@/types/database/base';
-import { Category, Notes } from '@/types/database/notes';
-
-import { logger } from '@/lib/logger';
+import { Category, Notes, ZodNotes } from '@/types/database/notes';
 
 interface useNotesOptions {
   data: Notes[];
@@ -21,7 +17,7 @@ interface useNotesOptions {
   successMessage: string;
   error: Error | null;
   refetch: () => Promise<any>;
-  //   postProfileMutation: any;
+  postNotesMutation: any;
   //   updateProfileMutation: any;
 }
 
@@ -65,24 +61,23 @@ export default function useNotes({ id, category }: useNotesProps): useNotesOptio
     retry: 1,
   });
 
-  //   const postMutation = useMutation({
-  //     mutationFn: async (profile: Profile) =>
-  //       sendProfile(profile, actionEnum.Values.create),
-  //     mutationKey: ["createProfile"],
-  //     onMutate: async (profile: Profile) => {
-  //       await queryClient.cancelQueries({ queryKey: ["loadProfile"] });
-  //       queryClient.setQueryData<Profile>(["loadProfile"], profile);
-  //       return profile;
-  //     },
-  //     onSuccess: (data, profile, context) => {
-  //       setSuccessMessage("Successfully created profile");
-  //       return data;
-  //     },
-  //     onError: (err, profile, context) => {
-  //       setMutationError(new Error("Failed to create profile"));
-  //       queryClient.setQueryData<Profile>(["loadProfile"], profile);
-  //     },
-  //   });
+  const postMutation = useMutation({
+    mutationFn: async (note: ZodNotes) => {
+      const postRequest = postRequestSchema.parse({
+        tableName: tableNameEnum.Values.notes,
+        data: note,
+      });
+      await post(postRequest);
+    },
+    mutationKey: ['postProfile'],
+    onSuccess: (data, profile, context) => {
+      setSuccessMessage('Successfully created note entry');
+      return data;
+    },
+    onError: (err, profile, context) => {
+      setError(new Error('Failed to create note entry'));
+    },
+  });
 
   //   const updateMutation = useMutation({
   //     mutationFn: async (profile: Profile) =>
@@ -109,7 +104,7 @@ export default function useNotes({ id, category }: useNotesProps): useNotesOptio
     successMessage,
     error: queryError || error,
     refetch,
-    // postProfileMutation: postMutation,
+    postNotesMutation: postMutation,
     // updateProfileMutation: updateMutation,
   };
 }

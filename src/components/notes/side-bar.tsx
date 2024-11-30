@@ -1,8 +1,8 @@
 import { FaGithub } from 'react-icons/fa';
-import { SiFastapi } from 'react-icons/si';
+import { SiFastapi, SiReact } from 'react-icons/si';
 
 import CategoryDropdown from '@/components/notes/category-dropdown';
-import { Button } from '@/components/ui/button';
+import NotesSheet from '@/components/notes/sheet';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 import { Category, Notes } from '@/types/database/notes';
@@ -11,32 +11,48 @@ type NotesSideBarProps = {
   notes: Notes[];
   selectedCategory: Category;
   onCategoryClick: (category: Category) => void;
+  onNoteClick: (note: Notes) => void;
 };
 
 export default function NotesSideBar({
   notes,
   selectedCategory,
   onCategoryClick,
+  onNoteClick,
 }: NotesSideBarProps) {
   return (
-    <ScrollArea className="border-r h-full">
-      <div className="w-[250px] flex flex-col justify-center space-y-2">
+    // TODO: Show the most updated content in the notes (probably need to refresh the page?)
+    <ScrollArea className="flex-shrink-0">
+      <div className="w-[250px] border-r flex flex-col justify-center space-y-2">
         <h1 className="text-xl font-bold text-center">Categories</h1>
         <CategoryDropdown
           buttonText="Github"
           buttonIcon={<FaGithub className="side-nav-bar-icon" />}
           category={'github'}
-          notes={selectedCategory === 'github' ? notes : []}
+          notes={notes}
+          selectedCategory={selectedCategory}
           onCategoryClick={onCategoryClick}
+          onNoteClick={onNoteClick}
         />
         <CategoryDropdown
           buttonText="FastAPI"
           buttonIcon={<SiFastapi className="side-nav-bar-icon" />}
           category={'fastapi'}
-          notes={selectedCategory === 'fastapi' ? notes : []}
+          notes={notes}
+          selectedCategory={selectedCategory}
           onCategoryClick={onCategoryClick}
+          onNoteClick={onNoteClick}
         />
-        {/* <ProfileSheet /> */}
+        <CategoryDropdown
+          buttonText="React"
+          buttonIcon={<SiReact className="side-nav-bar-icon" />}
+          category={'react'}
+          notes={notes}
+          selectedCategory={selectedCategory}
+          onCategoryClick={onCategoryClick}
+          onNoteClick={onNoteClick}
+        />
+        <NotesSheet />
       </div>
     </ScrollArea>
   );

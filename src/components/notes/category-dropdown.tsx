@@ -7,7 +7,9 @@ type CategoryDropdownProps = {
   buttonIcon: React.ReactNode;
   category: Category;
   notes: Notes[];
+  selectedCategory: Category;
   onCategoryClick: (category: Category) => void;
+  onNoteClick: (note: Notes) => void;
 };
 
 export default function CategoryDropdown({
@@ -15,30 +17,37 @@ export default function CategoryDropdown({
   buttonIcon,
   category,
   notes,
+  selectedCategory,
   onCategoryClick,
+  onNoteClick,
 }: CategoryDropdownProps) {
-  const notesDropdown = notes.map((note: Notes) => {
-    return (
-      <Button
-        key={note.id}
-        className="w-[80%] mx-auto"
-        style={{
-          textOverflow: 'ellipsis',
-          overflow: 'hidden',
-          whiteSpace: 'nowrap',
-          display: 'block',
-        }}
-      >
-        {note.title}
-      </Button>
-    );
-  });
+  const notesDropdown =
+    selectedCategory === category
+      ? notes.map((note: Notes) => {
+          return (
+            <Button
+              key={note.id}
+              variant="outline"
+              className="w-[80%] mx-auto"
+              style={{
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+                display: 'block',
+              }}
+              onClick={() => onNoteClick(note)}
+            >
+              {note.title}
+            </Button>
+          );
+        })
+      : [];
   return (
     <div className="flex flex-col space-y-2">
       <Button
         id={category}
         variant="ghost"
-        className="side-nav-bar-btn"
+        className={`side-nav-bar-btn ${category === selectedCategory ? 'bg-muted' : ''}`}
         onClick={() => onCategoryClick(category)}
       >
         {buttonIcon}
