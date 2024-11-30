@@ -84,6 +84,10 @@
     @apply transition-opacity duration-1000;
   }
 
+  .side-nav-bar-btn {
+    @apply mx-auto w-[80%];
+  }
+
   .side-nav-bar-btn:hover {
     background-color: transparent !important;
   }

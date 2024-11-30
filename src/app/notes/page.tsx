@@ -4,14 +4,17 @@ import { useEffect, useState } from 'react';
 
 import useNotes from '@/hooks/use-notes';
 
+import NoteCards from '@/components/notes/card';
 import NotesSideBar from '@/components/notes/side-bar';
 
-import { Category } from '@/types/database/notes';
+import { Category, Notes } from '@/types/database/notes';
 
 import { logger } from '@/lib/logger';
 
-export default function Notes() {
+export default function NotesPage() {
   const [selectedCategory, setSelectedCategory] = useState<Category>('github');
+  const [selectedNote, setSelectedNote] = useState<Notes | null>(null);
+
   const {
     data: notes,
     loading,
@@ -27,8 +30,16 @@ export default function Notes() {
     refetch();
   }, [selectedCategory, refetch]);
 
+  useEffect(() => {
+    setSelectedNote(notes[0]);
+  }, [notes]);
+
   const onCategoryClick = (category: Category) => {
     setSelectedCategory(category);
+  };
+
+  const onNoteClick = (note: Notes) => {
+    setSelectedNote(note);
   };
 
   return (
@@ -37,7 +48,11 @@ export default function Notes() {
         notes={notes}
         selectedCategory={selectedCategory}
         onCategoryClick={onCategoryClick}
+        onNoteClick={onNoteClick}
       />
+      <div className="w-full h-full mx-5">
+        <NoteCards notes={notes} />
+      </div>
     </div>
   );
 }

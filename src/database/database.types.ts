@@ -32,7 +32,7 @@ export type Database = {
       [_ in never]: never;
     };
     Enums: {
-      category: 'fastapi' | 'github';
+      category: 'fastapi' | 'github' | 'react';
     };
     CompositeTypes: {
       [_ in never]: never;
