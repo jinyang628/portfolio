@@ -17,13 +17,14 @@ export default function Title({ showIntro, updateShowContent }: TitleProps) {
             .callFunction(() => {
               setTimeout(() => {
                 updateShowContent();
-              }, 550);
+              }, 100);
             })
             .start();
         }}
         options={{
           wrapperClassName: 'text-5xl flex justify-center mt-4',
           cursor: '',
+          delay: 30,
         }}
       />
       <p className={`fade text-3xl mt-4 text-center ${showIntro ? 'opacity-100' : 'opacity-0'}`}>
