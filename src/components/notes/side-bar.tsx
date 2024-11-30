@@ -1,5 +1,8 @@
+import { useEffect, useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { SiFastapi, SiReact } from 'react-icons/si';
+
+import { checkIsAdmin } from '@/actions/admin';
 
 import CategoryDropdown from '@/components/notes/category-dropdown';
 import NotesSheet from '@/components/notes/sheet';
@@ -20,6 +23,15 @@ export default function NotesSideBar({
   onCategoryClick,
   onNoteClick,
 }: NotesSideBarProps) {
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const isAdmin = async () => {
+      setIsAdmin(await checkIsAdmin());
+    };
+    isAdmin();
+  }, []);
+
   return (
     // TODO: Show the most updated content in the notes (probably need to refresh the page?)
     <ScrollArea className="flex-shrink-0">
@@ -52,7 +64,7 @@ export default function NotesSideBar({
           onCategoryClick={onCategoryClick}
           onNoteClick={onNoteClick}
         />
-        <NotesSheet />
+        {isAdmin && <NotesSheet />}
       </div>
     </ScrollArea>
   );
