@@ -67,18 +67,27 @@ export default function NotesForm() {
           name="category"
           render={({ field }) => (
             <FormItem>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline">{field.value || 'Select Category'}</Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  {Object.values(zodCategoryEnum.Values).map((category: string) => (
-                    <DropdownMenuItem key={category} onClick={() => field.onChange(category)}>
-                      {category}
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <FormLabel>Category</FormLabel>
+              <div className="flex justify-start">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="w-[200px]">
+                      {field.value || 'Select Category'}
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-[200px]">
+                    {Object.values(zodCategoryEnum.Values).map((category: string) => (
+                      <DropdownMenuItem
+                        key={category}
+                        className="flex justify-center"
+                        onClick={() => field.onChange(category)}
+                      >
+                        {category}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             </FormItem>
           )}
         />
@@ -102,7 +111,6 @@ export default function NotesForm() {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                {/* TODO: Set a a bash style for the text area here */}
                 <Textarea className="max-h-[400px]" placeholder="Enter description..." {...field} />
               </FormControl>
               <FormMessage />
