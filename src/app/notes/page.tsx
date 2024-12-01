@@ -13,7 +13,7 @@ import { logger } from '@/lib/logger';
 
 export default function NotesPage() {
   const [selectedCategory, setSelectedCategory] = useState<Category>('github');
-  const [selectedNote, setSelectedNote] = useState<Notes | null>(null);
+  const [selectedNoteId, setSelectedNoteId] = useState<number | null>(null);
 
   const {
     data: notes,
@@ -30,16 +30,12 @@ export default function NotesPage() {
     refetch();
   }, [selectedCategory, refetch]);
 
-  useEffect(() => {
-    setSelectedNote(notes[0]);
-  }, [notes]);
-
   const onCategoryClick = (category: Category) => {
     setSelectedCategory(category);
   };
 
   const onNoteClick = (note: Notes) => {
-    setSelectedNote(note);
+    setSelectedNoteId(note.id);
   };
 
   return (
@@ -51,7 +47,7 @@ export default function NotesPage() {
         onNoteClick={onNoteClick}
       />
       <div className="w-full h-full mx-5">
-        <NoteCards notes={notes} />
+        <NoteCards notes={notes} selectedNoteId={selectedNoteId} />
       </div>
     </div>
   );

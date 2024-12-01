@@ -95,4 +95,18 @@
   .side-nav-bar-icon {
     @apply mr-2 h-6 w-6;
   }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-pulse-twice {
+    animation: pulse 0.4s ease-in-out 2;
+  }
 }
