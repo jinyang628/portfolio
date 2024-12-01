@@ -12,7 +12,7 @@ import { Category, Notes } from '@/types/database/notes';
 import { logger } from '@/lib/logger';
 
 export default function NotesPage() {
-  const [selectedCategory, setSelectedCategory] = useState<Category>('github');
+  const [selectedCategory, setSelectedCategory] = useState<Category>('git');
   const [selectedNoteId, setSelectedNoteId] = useState<number | null>(null);
 
   const {

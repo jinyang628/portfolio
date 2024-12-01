@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FaGithub } from 'react-icons/fa';
+import { IoGitMergeSharp } from 'react-icons/io5';
 import { SiFastapi, SiReact } from 'react-icons/si';
 
 import { checkIsAdmin } from '@/actions/admin';
@@ -38,9 +38,9 @@ export default function NotesSideBar({
       <div className="w-[250px] border-r flex flex-col justify-center space-y-2">
         <h1 className="text-xl font-bold text-center">Categories</h1>
         <CategoryDropdown
-          buttonText="Github"
-          buttonIcon={<FaGithub className="side-nav-bar-icon" />}
-          category={'github'}
+          buttonText="Git"
+          buttonIcon={<IoGitMergeSharp className="side-nav-bar-icon" />}
+          category={'git'}
           notes={notes}
           selectedCategory={selectedCategory}
           onCategoryClick={onCategoryClick}
