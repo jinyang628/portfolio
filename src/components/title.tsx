@@ -28,7 +28,7 @@ export default function Title({ showIntro, updateShowContent }: TitleProps) {
         }}
       />
       <p className={`fade text-3xl mt-4 text-center ${showIntro ? 'opacity-100' : 'opacity-0'}`}>
-        I am a builder and entrepreneur at heart
+        I take building very seriously.
       </p>
     </>
   );

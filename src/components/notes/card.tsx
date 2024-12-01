@@ -62,19 +62,16 @@ export default function NoteCards({ notes, selectedNoteId }: NoteCardsProps) {
           </CardHeader>
           <CardContent>
             <Markdown
-              className="text-secondary-foreground prose prose-sm dark:prose-invert"
+              className="text-secondary-foreground prose prose-sm dark:prose-invert [&_code]:bg-zinc-900 [&_code]:text-white"
               components={{
                 code: ({ children }) => (
                   <code
                     onClick={() => {
                       handleCopy(String(children), 'code snippet');
                     }}
-                    className="block bg-muted p-2 rounded-md cursor-pointer hover:bg-primary/20 transition-colors relative group"
+                    className="block p-2 rounded-md cursor-pointer hover:bg-zinc-800 transition-colors relative group"
                   >
                     {children}
-                    <span className="absolute right-2 top-2 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
-                      Click to copy
-                    </span>
                   </code>
                 ),
               }}

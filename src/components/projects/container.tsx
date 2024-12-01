@@ -29,13 +29,15 @@ export default function ProjectsContainer({ showCards }: ProjectsContainerProps)
   }, []);
 
   return (
-    <div className={`fade ${showCards ? 'opacity-100' : 'opacity-0'} mt-4 text-center`}>
-      <div className="border-2 border-gray-200 rounded-lg p-6">
-        <p className="text-lg mb-8">Check out some of my projects!</p>
-        <div className="space-y-8">
-          {projects.map((project) => (
-            <ProjectCard key={`${project.title}-card`} project={project} />
-          ))}
+    <div className="max-w-[80%] mx-auto">
+      <div className={`fade ${showCards ? 'opacity-100' : 'opacity-0'} mt-4 text-center`}>
+        <div className="border-2 border-gray-200 rounded-lg p-6">
+          <p className="text-lg mb-8">Check out some of my projects!</p>
+          <div className="space-y-8">
+            {projects.map((project) => (
+              <ProjectCard key={`${project.title}-card`} project={project} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
