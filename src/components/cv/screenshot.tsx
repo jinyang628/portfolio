@@ -8,8 +8,8 @@ interface ScreenshotSectionProps {
 }
 
 export default function ScreenshotSection({ imageSrc }: ScreenshotSectionProps) {
-  const screenshot = (
-    <ScrollArea className="h-full w-full rounded-md border">
+  return (
+    <ScrollArea className="max-w-[80%] max-h-[80%] w-full rounded-md border">
       {imageSrc ? (
         <Image
           src={imageSrc}
@@ -17,13 +17,11 @@ export default function ScreenshotSection({ imageSrc }: ScreenshotSectionProps) 
           width={0}
           height={0}
           sizes="100vw"
-          style={{ width: '100%', height: 'auto' }}
+          style={{ width: '100%', height: '100%' }}
         />
       ) : (
         <ShimmerEffect />
       )}
     </ScrollArea>
   );
-
-  return <div className="h-full">{screenshot}</div>;
 }
