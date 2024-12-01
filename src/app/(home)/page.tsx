@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 
-import MenuSection from '@/components/menu/menu-section';
+import ProjectsContainer from '@/components/projects/container';
+import ScrollToTop from '@/components/shared/scroll-to-top';
 import Title from '@/components/title';
 
 export default function Home() {
@@ -19,7 +20,8 @@ export default function Home() {
   return (
     <>
       <Title showIntro={showIntro} updateShowContent={updateShowContent} />
-      <MenuSection showCards={showCards} />
+      <ProjectsContainer showCards={showCards} />
+      <ScrollToTop />
     </>
   );
 }

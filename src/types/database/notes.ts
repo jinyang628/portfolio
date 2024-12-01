@@ -2,7 +2,7 @@ import { Database, Tables, TablesInsert } from '@/database/database.types';
 import { z } from 'zod';
 
 export type Notes = Tables<'notes'>;
-export type NotesInsert = TablesInsert<'notes'>;
+export type Projects = Tables<'projects'>;
 export type Category = Database['public']['Enums']['category'];
 
 /**

@@ -24,6 +24,30 @@ export type Database = {
         };
         Relationships: [];
       };
+      projects: {
+        Row: {
+          description: string;
+          githubUrls: Json[];
+          id: number;
+          title: string;
+          youtubeUrl: string;
+        };
+        Insert: {
+          description: string;
+          githubUrls: Json[];
+          id?: number;
+          title: string;
+          youtubeUrl: string;
+        };
+        Update: {
+          description?: string;
+          githubUrls?: Json[];
+          id?: number;
+          title?: string;
+          youtubeUrl?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;

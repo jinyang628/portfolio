@@ -50,7 +50,7 @@ export default function useNotes({ id, category }: useNotesProps): useNotesOptio
           tableName: tableNameEnum.Values.notes,
           filterConditions: filterConditions,
         });
-        const notes: Notes[] = await get(getRequest);
+        const notes = (await get(getRequest)) as Notes[];
         return notes;
       } catch (err) {
         setError(new Error('Failed to load notes'));

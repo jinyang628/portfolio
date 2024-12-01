@@ -4,18 +4,19 @@ import { GET } from '@/database/client';
 
 import { GetRequest } from '@/types/actions/database/get';
 import { tableNameEnum } from '@/types/database/base';
-import { Notes } from '@/types/database/notes';
+import { Notes, Projects } from '@/types/database/notes';
 
 import { logger } from '@/lib/logger';
 
-export async function get(input: GetRequest): Promise<Notes[]> {
-  // TODO: Update return type
+export async function get(input: GetRequest): Promise<Notes[] | Projects[]> {
   try {
     logger.info(`Server action get invoked on table: ${input.tableName}`);
     const data = await GET(input.tableName, input.filterConditions);
     switch (input.tableName) {
       case tableNameEnum.Values.notes:
         return data as Notes[];
+      case tableNameEnum.Values.projects:
+        return data as Projects[];
       default:
         logger.error(`Invalid table name: ${input.tableName}`);
         return [];
