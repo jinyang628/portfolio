@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { IoGitMergeSharp } from 'react-icons/io5';
-import { SiFastapi, SiReact } from 'react-icons/si';
+import { SiAiohttp, SiFastapi, SiReact } from 'react-icons/si';
 
 import { checkIsAdmin } from '@/actions/admin';
 
@@ -59,6 +59,15 @@ export default function NotesSideBar({
           buttonText="React"
           buttonIcon={<SiReact className="side-nav-bar-icon" />}
           category={'react'}
+          notes={notes}
+          selectedCategory={selectedCategory}
+          onCategoryClick={onCategoryClick}
+          onNoteClick={onNoteClick}
+        />
+        <CategoryDropdown
+          buttonText="API"
+          buttonIcon={<SiAiohttp className="side-nav-bar-icon" />}
+          category={'api'}
           notes={notes}
           selectedCategory={selectedCategory}
           onCategoryClick={onCategoryClick}
