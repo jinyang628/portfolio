@@ -2,8 +2,6 @@
 
 Let's have a chat!
 
-[Link to website](https://chenjinyang.vercel.app/)
-
 ## Updating supabase database types
 
 ```bash
