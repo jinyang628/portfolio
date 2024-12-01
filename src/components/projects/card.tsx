@@ -49,8 +49,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
         <div className="space-y-4">
           <Separator className="h-[2px] bg-border" />
-          <div className="flex justify-center space-x-4">{githubBtnList}</div>
-
+          <div className="flex flex-col sm:flex-row justify-center sm:space-x-4 space-y-2 sm:space-y-0">
+            {githubBtnList}
+          </div>
           {project.youtubeUrl && (
             <div className="space-y-4">
               <div className="relative w-full pt-[56.25%]">
