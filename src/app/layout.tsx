@@ -45,9 +45,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <QueryProvider>
-            <div className="flex flex-col h-screen w-full p-8">
+            <div className="flex flex-col h-screen min-w-[30rem] w-full p-8">
               <HeaderButtons />
-              <div className="min-w-[30rem] h-full">
+              <div className="h-full">
                 <Suspense fallback={<PageLoader />}>{children}</Suspense>
               </div>
             </div>
