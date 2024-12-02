@@ -6,12 +6,12 @@ import ScreenshotSection from '@/components/cv/screenshot';
 import PageLoader from '@/components/shared/page-loading-indicator';
 import ScrollToTop from '@/components/shared/scroll-to-top';
 
-import { CV_PDF_PATH, PdfState, defaultPdfState, pdfDocumentEnum } from '@/types/pdf';
+import { CVState, defaultCVState } from '@/types/cv';
 
-import { loadPdfImageSrc } from '@/lib/pdf';
+import { loadCVPng } from '@/lib/cv';
 
 export default function CV() {
-  const [pdfState, setPdfState] = useState<PdfState>(defaultPdfState);
+  const [pdfState, setPdfState] = useState<CVState>(defaultCVState);
 
   useEffect(() => {
     const loadCV = async () => {
@@ -20,15 +20,15 @@ export default function CV() {
           ...pdfState,
           isLoading: true,
         });
-        const imageSrc = await loadPdfImageSrc(CV_PDF_PATH, pdfDocumentEnum.Values.CV);
+        const imageSrc: string[] = await loadCVPng();
         console.log(imageSrc);
         setPdfState({
-          imageSrc: imageSrc,
+          imageSrcs: imageSrc,
           isLoading: false,
         });
       } catch (error) {
         setPdfState({
-          imageSrc: '',
+          imageSrcs: [],
           isLoading: false,
         });
         throw error;
@@ -44,7 +44,7 @@ export default function CV() {
 
   return (
     <div className="flex justify-center m-5">
-      <ScreenshotSection imageSrc={pdfState.imageSrc} />
+      <ScreenshotSection imageSrcs={pdfState.imageSrcs} />
       <ScrollToTop />
     </div>
   );
