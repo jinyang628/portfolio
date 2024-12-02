@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
+import { Suspense } from 'react';
+
 import HeaderButtons from '@/components/shared/header/buttons';
+import PageLoader from '@/components/shared/page-loading-indicator';
 import { QueryProvider } from '@/components/shared/query-provider';
 import { ThemeProvider } from '@/components/shared/theme/provider';
 import { Toaster } from '@/components/ui/toaster';
@@ -44,7 +47,9 @@ export default function RootLayout({
           <QueryProvider>
             <div className="flex flex-col h-screen w-full p-8">
               <HeaderButtons />
-              <div className="min-w-[30rem] h-full">{children}</div>
+              <div className="min-w-[30rem] h-full">
+                <Suspense fallback={<PageLoader />}>{children}</Suspense>
+              </div>
             </div>
             <Toaster />
           </QueryProvider>

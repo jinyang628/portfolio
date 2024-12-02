@@ -7,3 +7,5 @@ Let's have a chat!
 ```bash
 npx supabase gen types typescript --project-id "ghfvhtnuuzyqefrmhsxc" --schema public > database.types.ts
 ```
+
+## Convert [PDF CV to PNG](https://combinepdf.com/) (to avoid parsing the PDF during runtime)
