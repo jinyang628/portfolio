@@ -24,8 +24,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run ESLint
-        run: npm run lint
-
       - name: Run Prettier
         run: npx prettier --check .
+
+      - name: Build
+        env:
+          SUPABASE_URL: '${{ secrets.SUPABASE_URL }}'
+          SUPABASE_KEY: '${{ secrets.SUPABASE_KEY }}'
+          ADMIN_ACCESS: '${{ secrets.ADMIN_ACCESS }}'
+        run: npm run build
