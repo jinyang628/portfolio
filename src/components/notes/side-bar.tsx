@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react';
 import { IoGitMergeSharp } from 'react-icons/io5';
-import { SiAiohttp, SiClerk, SiFastapi, SiReact, SiSupabase, SiVisualstudiocode } from 'react-icons/si';
+import {
+  SiAiohttp,
+  SiClerk,
+  SiFastapi,
+  SiReact,
+  SiSupabase,
+  SiVisualstudiocode,
+} from 'react-icons/si';
 
 import { checkIsAdmin } from '@/actions/admin';
 
