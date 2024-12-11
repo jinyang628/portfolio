@@ -56,7 +56,7 @@ export type Database = {
       [_ in never]: never;
     };
     Enums: {
-      category: 'fastapi' | 'git' | 'react' | 'api' | 'clerk' | 'supabase' | 'vscode';
+      category: 'fastapi' | 'git' | 'react' | 'api' | 'clerk' | 'supabase' | 'vscode' | 'python';
     };
     CompositeTypes: {
       [_ in never]: never;

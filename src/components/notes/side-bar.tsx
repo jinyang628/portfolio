@@ -4,6 +4,7 @@ import {
   SiAiohttp,
   SiClerk,
   SiFastapi,
+  SiPython,
   SiReact,
   SiSupabase,
   SiVisualstudiocode,
@@ -75,6 +76,15 @@ export default function NotesSideBar({
           buttonText="Git"
           buttonIcon={<IoGitMergeSharp className="side-nav-bar-icon" />}
           category={'git'}
+          notes={notes}
+          selectedCategory={selectedCategory}
+          onCategoryClick={onCategoryClick}
+          onNoteClick={onNoteClick}
+        />
+        <CategoryDropdown
+          buttonText="Python"
+          buttonIcon={<SiPython className="side-nav-bar-icon" />}
+          category={'python'}
           notes={notes}
           selectedCategory={selectedCategory}
           onCategoryClick={onCategoryClick}
