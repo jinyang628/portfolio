@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react';
 import { IoGitMergeSharp } from 'react-icons/io5';
-import { SiAiohttp, SiClerk, SiFastapi, SiReact, SiSupabase } from 'react-icons/si';
+import {
+  SiAiohttp,
+  SiClerk,
+  SiFastapi,
+  SiReact,
+  SiSupabase,
+  SiVisualstudiocode,
+} from 'react-icons/si';
 
 import { checkIsAdmin } from '@/actions/admin';
 
@@ -38,33 +45,6 @@ export default function NotesSideBar({
       <div className="w-[250px] border-r flex flex-col justify-center space-y-2">
         <h1 className="text-xl font-bold text-center">Categories</h1>
         <CategoryDropdown
-          buttonText="Git"
-          buttonIcon={<IoGitMergeSharp className="side-nav-bar-icon" />}
-          category={'git'}
-          notes={notes}
-          selectedCategory={selectedCategory}
-          onCategoryClick={onCategoryClick}
-          onNoteClick={onNoteClick}
-        />
-        <CategoryDropdown
-          buttonText="FastAPI"
-          buttonIcon={<SiFastapi className="side-nav-bar-icon" />}
-          category={'fastapi'}
-          notes={notes}
-          selectedCategory={selectedCategory}
-          onCategoryClick={onCategoryClick}
-          onNoteClick={onNoteClick}
-        />
-        <CategoryDropdown
-          buttonText="React"
-          buttonIcon={<SiReact className="side-nav-bar-icon" />}
-          category={'react'}
-          notes={notes}
-          selectedCategory={selectedCategory}
-          onCategoryClick={onCategoryClick}
-          onNoteClick={onNoteClick}
-        />
-        <CategoryDropdown
           buttonText="API"
           buttonIcon={<SiAiohttp className="side-nav-bar-icon" />}
           category={'api'}
@@ -83,9 +63,45 @@ export default function NotesSideBar({
           onNoteClick={onNoteClick}
         />
         <CategoryDropdown
+          buttonText="FastAPI"
+          buttonIcon={<SiFastapi className="side-nav-bar-icon" />}
+          category={'fastapi'}
+          notes={notes}
+          selectedCategory={selectedCategory}
+          onCategoryClick={onCategoryClick}
+          onNoteClick={onNoteClick}
+        />
+        <CategoryDropdown
+          buttonText="Git"
+          buttonIcon={<IoGitMergeSharp className="side-nav-bar-icon" />}
+          category={'git'}
+          notes={notes}
+          selectedCategory={selectedCategory}
+          onCategoryClick={onCategoryClick}
+          onNoteClick={onNoteClick}
+        />
+        <CategoryDropdown
+          buttonText="React"
+          buttonIcon={<SiReact className="side-nav-bar-icon" />}
+          category={'react'}
+          notes={notes}
+          selectedCategory={selectedCategory}
+          onCategoryClick={onCategoryClick}
+          onNoteClick={onNoteClick}
+        />
+        <CategoryDropdown
           buttonText="Supabase"
           buttonIcon={<SiSupabase className="side-nav-bar-icon" />}
           category={'supabase'}
+          notes={notes}
+          selectedCategory={selectedCategory}
+          onCategoryClick={onCategoryClick}
+          onNoteClick={onNoteClick}
+        />
+        <CategoryDropdown
+          buttonText="VSCode"
+          buttonIcon={<SiVisualstudiocode className="side-nav-bar-icon" />}
+          category={'vscode'}
           notes={notes}
           selectedCategory={selectedCategory}
           onCategoryClick={onCategoryClick}
