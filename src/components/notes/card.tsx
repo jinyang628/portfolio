@@ -64,16 +64,21 @@ export default function NoteCards({ notes, selectedNoteId }: NoteCardsProps) {
             <Markdown
               className="text-secondary-foreground prose prose-sm dark:prose-invert [&_code]:bg-zinc-900 [&_code]:text-white w-full max-w-none"
               components={{
-                code: ({ children }) => (
-                  <code
-                    onClick={() => {
-                      handleCopy(String(children), 'code snippet');
-                    }}
-                    className="block p-2 rounded-md cursor-pointer hover:bg-zinc-800 transition-colors relative group"
-                  >
-                    {children}
-                  </code>
-                ),
+                code: ({ children, className }) => {
+                  // Check if this is an inline code block (no language specified)
+                  const isInline = !className;
+
+                  return (
+                    <code
+                      onClick={() => {
+                        handleCopy(String(children), 'code snippet');
+                      }}
+                      className={`${isInline ? 'inline px-1.5 py-0.5' : 'block p-2'} rounded-md cursor-pointer hover:bg-zinc-800 transition-colors relative group`}
+                    >
+                      {children}
+                    </code>
+                  );
+                },
               }}
             >
               {note.description}

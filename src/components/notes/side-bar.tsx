@@ -41,84 +41,87 @@ export default function NotesSideBar({
   }, []);
 
   return (
-    // TODO: Show the most updated content in the notes (probably need to refresh the page?)
-    <ScrollArea className="flex-shrink-0">
-      <div className="w-[250px] border-r flex flex-col justify-center space-y-2">
-        <h1 className="text-xl font-bold text-center">Categories</h1>
-        <CategoryDropdown
-          buttonText="API"
-          buttonIcon={<SiAiohttp className="side-nav-bar-icon" />}
-          category={'api'}
-          notes={notes}
-          selectedCategory={selectedCategory}
-          onCategoryClick={onCategoryClick}
-          onNoteClick={onNoteClick}
-        />
-        <CategoryDropdown
-          buttonText="Clerk"
-          buttonIcon={<SiClerk className="side-nav-bar-icon" />}
-          category={'clerk'}
-          notes={notes}
-          selectedCategory={selectedCategory}
-          onCategoryClick={onCategoryClick}
-          onNoteClick={onNoteClick}
-        />
-        <CategoryDropdown
-          buttonText="FastAPI"
-          buttonIcon={<SiFastapi className="side-nav-bar-icon" />}
-          category={'fastapi'}
-          notes={notes}
-          selectedCategory={selectedCategory}
-          onCategoryClick={onCategoryClick}
-          onNoteClick={onNoteClick}
-        />
-        <CategoryDropdown
-          buttonText="Git"
-          buttonIcon={<IoGitMergeSharp className="side-nav-bar-icon" />}
-          category={'git'}
-          notes={notes}
-          selectedCategory={selectedCategory}
-          onCategoryClick={onCategoryClick}
-          onNoteClick={onNoteClick}
-        />
-        <CategoryDropdown
-          buttonText="Python"
-          buttonIcon={<SiPython className="side-nav-bar-icon" />}
-          category={'python'}
-          notes={notes}
-          selectedCategory={selectedCategory}
-          onCategoryClick={onCategoryClick}
-          onNoteClick={onNoteClick}
-        />
-        <CategoryDropdown
-          buttonText="React"
-          buttonIcon={<SiReact className="side-nav-bar-icon" />}
-          category={'react'}
-          notes={notes}
-          selectedCategory={selectedCategory}
-          onCategoryClick={onCategoryClick}
-          onNoteClick={onNoteClick}
-        />
-        <CategoryDropdown
-          buttonText="Supabase"
-          buttonIcon={<SiSupabase className="side-nav-bar-icon" />}
-          category={'supabase'}
-          notes={notes}
-          selectedCategory={selectedCategory}
-          onCategoryClick={onCategoryClick}
-          onNoteClick={onNoteClick}
-        />
-        <CategoryDropdown
-          buttonText="VSCode"
-          buttonIcon={<SiVisualstudiocode className="side-nav-bar-icon" />}
-          category={'vscode'}
-          notes={notes}
-          selectedCategory={selectedCategory}
-          onCategoryClick={onCategoryClick}
-          onNoteClick={onNoteClick}
-        />
-        {isAdmin && <NotesSheet />}
+    <div className="w-[250px] flex-shrink-0">
+      <div className="fixed top-[100px] w-[250px] h-[90vh]">
+        <ScrollArea>
+          <div className="flex flex-col justify-center space-y-2 px-2 w-[250px]">
+            <h1 className="text-xl font-bold text-center">Categories</h1>
+            <CategoryDropdown
+              buttonText="API"
+              buttonIcon={<SiAiohttp className="side-nav-bar-icon" />}
+              category={'api'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
+            <CategoryDropdown
+              buttonText="Clerk"
+              buttonIcon={<SiClerk className="side-nav-bar-icon" />}
+              category={'clerk'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
+            <CategoryDropdown
+              buttonText="FastAPI"
+              buttonIcon={<SiFastapi className="side-nav-bar-icon" />}
+              category={'fastapi'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
+            <CategoryDropdown
+              buttonText="Git"
+              buttonIcon={<IoGitMergeSharp className="side-nav-bar-icon" />}
+              category={'git'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
+            <CategoryDropdown
+              buttonText="Python"
+              buttonIcon={<SiPython className="side-nav-bar-icon" />}
+              category={'python'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
+            <CategoryDropdown
+              buttonText="React"
+              buttonIcon={<SiReact className="side-nav-bar-icon" />}
+              category={'react'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
+            <CategoryDropdown
+              buttonText="Supabase"
+              buttonIcon={<SiSupabase className="side-nav-bar-icon" />}
+              category={'supabase'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
+            <CategoryDropdown
+              buttonText="VSCode"
+              buttonIcon={<SiVisualstudiocode className="side-nav-bar-icon" />}
+              category={'vscode'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
+            {isAdmin && <NotesSheet />}
+          </div>
+        </ScrollArea>
       </div>
-    </ScrollArea>
+    </div>
   );
 }
