@@ -6,6 +6,7 @@ import useNotes from '@/hooks/use-notes';
 
 import NoteCards from '@/components/notes/card';
 import NotesSideBar from '@/components/notes/side-bar';
+import ScrollToTop from '@/components/shared/scroll-to-top';
 
 import { Category, Notes } from '@/types/database/notes';
 
@@ -49,6 +50,7 @@ export default function NotesPage() {
       <div className="w-full h-full mx-5">
         <NoteCards notes={notes} selectedNoteId={selectedNoteId} />
       </div>
+      <ScrollToTop />
     </div>
   );
 }
