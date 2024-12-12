@@ -17,6 +17,7 @@ export const zodCategoryEnum = z.enum([
   'clerk',
   'supabase',
   'vscode',
+  'python',
 ]);
 
 export const zodNotesSchema = z.object({
