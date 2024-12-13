@@ -16,6 +16,7 @@ export const zodCategoryEnum = z.enum([
   'api',
   'clerk',
   'supabase',
+  'typescript',
   'vscode',
   'python',
 ]);

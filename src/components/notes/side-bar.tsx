@@ -7,6 +7,7 @@ import {
   SiPython,
   SiReact,
   SiSupabase,
+  SiTypescript,
   SiVisualstudiocode,
 } from 'react-icons/si';
 
@@ -104,6 +105,15 @@ export default function NotesSideBar({
               buttonText="Supabase"
               buttonIcon={<SiSupabase className="side-nav-bar-icon" />}
               category={'supabase'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
+            <CategoryDropdown
+              buttonText="TypeScript"
+              buttonIcon={<SiTypescript className="side-nav-bar-icon" />}
+              category={'typescript'}
               notes={notes}
               selectedCategory={selectedCategory}
               onCategoryClick={onCategoryClick}
