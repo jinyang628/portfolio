@@ -9,6 +9,7 @@ import {
   SiSupabase,
   SiTypescript,
   SiVisualstudiocode,
+  SiXstate,
 } from 'react-icons/si';
 
 import { checkIsAdmin } from '@/actions/admin';
@@ -123,6 +124,15 @@ export default function NotesSideBar({
               buttonText="VSCode"
               buttonIcon={<SiVisualstudiocode className="side-nav-bar-icon" />}
               category={'vscode'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
+            <CategoryDropdown
+              buttonText="Zustand"
+              buttonIcon={<SiXstate className="side-nav-bar-icon" />}
+              category={'zustand'}
               notes={notes}
               selectedCategory={selectedCategory}
               onCategoryClick={onCategoryClick}

@@ -65,7 +65,8 @@ export type Database = {
         | 'supabase'
         | 'vscode'
         | 'python'
-        | 'typescript';
+        | 'typescript'
+        | 'zustand';
     };
     CompositeTypes: {
       [_ in never]: never;

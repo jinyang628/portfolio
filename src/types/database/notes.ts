@@ -19,6 +19,7 @@ export const zodCategoryEnum = z.enum([
   'typescript',
   'vscode',
   'python',
+  'zustand',
 ]);
 
 export const zodNotesSchema = z.object({
