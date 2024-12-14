@@ -62,7 +62,7 @@ export default function NoteCards({ notes, selectedNoteId }: NoteCardsProps) {
           </CardHeader>
           <CardContent>
             <Markdown
-              className="text-secondary-foreground prose prose-sm dark:prose-invert [&_code]:bg-zinc-900 [&_code]:text-white w-full max-w-none"
+              className="text-secondary-foreground prose prose-xl dark:prose-invert [&_code]:bg-zinc-900 [&_code]:text-white w-full max-w-none"
               components={{
                 code: ({ children, className }) => {
                   // Check if this is an inline code block (no language specified)
