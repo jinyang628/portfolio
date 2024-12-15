@@ -3,6 +3,7 @@
 Let's have a chat!
 
 [Email](mailto:chenjinyang4192@gmail.com)
+
 [LinkedIn](https://www.linkedin.com/in/chen-jin-yang-37baa8202/)
 
 ## Updating supabase database types
