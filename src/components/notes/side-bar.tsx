@@ -17,6 +17,7 @@ import { checkIsAdmin } from '@/actions/admin';
 import CategoryDropdown from '@/components/notes/category-dropdown';
 import NotesSheet from '@/components/notes/sheet';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Separator } from '@/components/ui/separator';
 
 import { Category, Notes } from '@/types/database/notes';
 
@@ -44,10 +45,14 @@ export default function NotesSideBar({
 
   return (
     <div className="w-[250px] flex-shrink-0">
-      <div className="fixed top-[100px] w-[250px] h-[90vh]">
-        <ScrollArea>
+      <div className="fixed top-[100px] w-[250px] h-[90vh] space-y-5">
+        <h1 className="text-xl font-bold text-center">Categories</h1>
+        <div className="flex justify-center">
+          <Separator className="w-[70%]" orientation="horizontal" />
+        </div>
+
+        <ScrollArea className="h-[500px]">
           <div className="flex flex-col justify-center space-y-2 px-2 w-[250px]">
-            <h1 className="text-xl font-bold text-center">Categories</h1>
             <CategoryDropdown
               buttonText="API"
               buttonIcon={<SiAiohttp className="side-nav-bar-icon" />}
