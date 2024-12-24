@@ -57,6 +57,7 @@ export type Database = {
     };
     Enums: {
       category:
+        | 'extension'
         | 'fastapi'
         | 'git'
         | 'react'
@@ -64,6 +65,7 @@ export type Database = {
         | 'clerk'
         | 'supabase'
         | 'vscode'
+        | 'poetry'
         | 'python'
         | 'typescript'
         | 'zustand';

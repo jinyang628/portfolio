@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { IoGitMergeSharp } from 'react-icons/io5';
+import { IoExtensionPuzzleOutline, IoGitMergeSharp } from 'react-icons/io5';
 import {
   SiAiohttp,
   SiClerk,
   SiFastapi,
+  SiPoetry,
   SiPython,
   SiReact,
   SiSupabase,
@@ -72,6 +73,15 @@ export default function NotesSideBar({
               onNoteClick={onNoteClick}
             />
             <CategoryDropdown
+              buttonText="Extension"
+              buttonIcon={<IoExtensionPuzzleOutline className="side-nav-bar-icon" />}
+              category={'extension'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
+            <CategoryDropdown
               buttonText="FastAPI"
               buttonIcon={<SiFastapi className="side-nav-bar-icon" />}
               category={'fastapi'}
@@ -84,6 +94,15 @@ export default function NotesSideBar({
               buttonText="Git"
               buttonIcon={<IoGitMergeSharp className="side-nav-bar-icon" />}
               category={'git'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
+            <CategoryDropdown
+              buttonText="Poetry"
+              buttonIcon={<SiPoetry className="side-nav-bar-icon" />}
+              category={'poetry'}
               notes={notes}
               selectedCategory={selectedCategory}
               onCategoryClick={onCategoryClick}

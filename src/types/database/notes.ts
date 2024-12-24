@@ -10,6 +10,7 @@ export type Category = Database['public']['Enums']['category'];
  * */
 
 export const zodCategoryEnum = z.enum([
+  'extension',
   'fastapi',
   'git',
   'react',
@@ -18,6 +19,7 @@ export const zodCategoryEnum = z.enum([
   'supabase',
   'typescript',
   'vscode',
+  'poetry',
   'python',
   'zustand',
 ]);
