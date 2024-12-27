@@ -57,12 +57,13 @@ export type Database = {
     };
     Enums: {
       category:
+        | 'algorithm'
+        | 'api'
+        | 'clerk'
         | 'extension'
         | 'fastapi'
         | 'git'
         | 'react'
-        | 'api'
-        | 'clerk'
         | 'supabase'
         | 'vscode'
         | 'poetry'
