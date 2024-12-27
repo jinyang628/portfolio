@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { BiMath } from 'react-icons/bi';
 import { IoExtensionPuzzleOutline, IoGitMergeSharp } from 'react-icons/io5';
 import {
   SiAiohttp,
@@ -54,6 +55,15 @@ export default function NotesSideBar({
 
         <ScrollArea className="h-[500px]">
           <div className="flex flex-col justify-center space-y-2 px-2 w-[250px]">
+            <CategoryDropdown
+              buttonText="Algorithm"
+              buttonIcon={<BiMath className="side-nav-bar-icon" />}
+              category={'algorithm'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
             <CategoryDropdown
               buttonText="API"
               buttonIcon={<SiAiohttp className="side-nav-bar-icon" />}
