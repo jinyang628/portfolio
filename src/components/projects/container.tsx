@@ -22,7 +22,9 @@ export default function ProjectsContainer({ showCards }: ProjectsContainerProps)
         filterConditions: {},
       });
       const projects = (await get(getRequest)) as Projects[];
-      setProjects(projects);
+      const sortedProjects = projects.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+
+      setProjects(sortedProjects);
     };
 
     loadProjects();

@@ -29,6 +29,7 @@ export type Database = {
           description: string;
           githubUrls: Json[];
           id: number;
+          order: number | null;
           title: string;
           youtubeUrl: string;
         };
@@ -36,6 +37,7 @@ export type Database = {
           description: string;
           githubUrls: Json[];
           id?: number;
+          order?: number | null;
           title: string;
           youtubeUrl: string;
         };
@@ -43,6 +45,7 @@ export type Database = {
           description?: string;
           githubUrls?: Json[];
           id?: number;
+          order?: number | null;
           title?: string;
           youtubeUrl?: string;
         };
@@ -57,19 +60,19 @@ export type Database = {
     };
     Enums: {
       category:
-        | 'algorithm'
-        | 'api'
-        | 'clerk'
-        | 'extension'
         | 'fastapi'
         | 'git'
         | 'react'
+        | 'api'
+        | 'clerk'
         | 'supabase'
         | 'vscode'
-        | 'poetry'
         | 'python'
         | 'typescript'
-        | 'zustand';
+        | 'zustand'
+        | 'poetry'
+        | 'extension'
+        | 'algorithm';
     };
     CompositeTypes: {
       [_ in never]: never;
