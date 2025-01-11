@@ -42,14 +42,14 @@ export default function NotesPage() {
   };
 
   return (
-    <div className="my-5 flex bg-background h-[90%]">
+    <div className="my-5 flex h-[90%] bg-background">
       <NotesSideBar
         notes={notes}
         selectedCategory={selectedCategory}
         onCategoryClick={onCategoryClick}
         onNoteClick={onNoteClick}
       />
-      <div className="w-full h-full mx-5">
+      <div className="mx-5 h-full w-full">
         <NoteCards notes={notes} selectedNoteId={selectedNoteId} />
       </div>
       <ScrollToTop />

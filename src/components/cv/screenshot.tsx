@@ -13,7 +13,7 @@ export default function ScreenshotSection({ imageSrcs }: ScreenshotSectionProps)
   }
 
   return (
-    <ScrollArea className="max-w-[80%] max-h-[80%] w-full rounded-md border">
+    <ScrollArea className="max-h-[80%] w-full max-w-[80%] rounded-md border">
       {imageSrcs.map((src, index) => (
         <Image
           key={index}

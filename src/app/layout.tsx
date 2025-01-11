@@ -33,11 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <script
-          type="module"
-          defer
-          src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/spiral.js"
-        ></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/spiral.js" defer />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -45,7 +41,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <QueryProvider>
-            <div className="flex flex-col h-screen min-w-[30rem] w-full p-8">
+            <div className="flex h-screen w-full min-w-[30rem] flex-col p-8">
               <HeaderButtons />
               <div className="h-full">
                 <Suspense fallback={<PageLoader />}>{children}</Suspense>

@@ -39,7 +39,7 @@ export default function NoteCards({ notes, selectedNoteId }: NoteCardsProps) {
 
   if (notes.length === 0) {
     return (
-      <div className="flex items-center justify-center h-full w-full">
+      <div className="flex h-full w-full items-center justify-center">
         <l-spiral color="hsl(var(--primary))" size={200}></l-spiral>
       </div>
     );
@@ -53,10 +53,10 @@ export default function NoteCards({ notes, selectedNoteId }: NoteCardsProps) {
           ref={(el) => {
             if (el) cardRefs.current.set(note.id, el);
           }}
-          className="w-full h-full overflow-hidden transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-[1.02] bg-gradient-to-br from-primary/5 to-secondary/5"
+          className="h-full w-full overflow-hidden bg-gradient-to-br from-primary/5 to-secondary/5 transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lg"
         >
           <CardHeader className="pb-3">
-            <CardTitle className="text-2xl font-bold text-primary truncate">{note.title}</CardTitle>
+            <CardTitle className="truncate text-2xl font-bold text-primary">{note.title}</CardTitle>
           </CardHeader>
           <CardContent>
             <MarkdownRenderer note={note} />

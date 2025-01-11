@@ -51,9 +51,11 @@ export default function useNotes({ id, category }: useNotesProps): useNotesOptio
           filterConditions: filterConditions,
         });
         const notes = (await get(getRequest)) as Notes[];
+
         return notes;
       } catch (err) {
         setError(new Error('Failed to load notes'));
+
         return null;
       }
     },
@@ -72,6 +74,7 @@ export default function useNotes({ id, category }: useNotesProps): useNotesOptio
     mutationKey: ['postProfile'],
     onSuccess: (data, profile, context) => {
       setSuccessMessage('Successfully created note entry');
+
       return data;
     },
     onError: (err, profile, context) => {

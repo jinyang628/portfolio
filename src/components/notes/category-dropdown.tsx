@@ -28,7 +28,7 @@ export default function CategoryDropdown({
             <Button
               key={note.id}
               variant="outline"
-              className="w-[80%] mx-auto"
+              className="mx-auto w-[80%]"
               style={{
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',

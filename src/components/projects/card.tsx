@@ -40,23 +40,23 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <Card className="overflow-hidden">
-      <CardContent className="w-full flex flex-col p-6 space-y-4">
+      <CardContent className="flex w-full flex-col space-y-4 p-6">
         <div>
-          <h3 className="text-2xl font-semibold mb-4">{project.title}</h3>
-          <ReactMarkdown className="prose dark:prose-invert max-w-none">
+          <h3 className="mb-4 text-2xl font-semibold">{project.title}</h3>
+          <ReactMarkdown className="prose max-w-none dark:prose-invert">
             {project.description}
           </ReactMarkdown>
         </div>
         <div className="space-y-4">
           <Separator className="h-[2px] bg-border" />
-          <div className="flex flex-col sm:flex-row justify-center sm:space-x-4 space-y-2 sm:space-y-0">
+          <div className="flex flex-col justify-center space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0">
             {githubBtnList}
           </div>
           {project.youtubeUrl && (
             <div className="space-y-4">
               <div className="relative w-full pt-[56.25%]">
                 <iframe
-                  className="absolute top-0 left-0 w-full h-full"
+                  className="absolute left-0 top-0 h-full w-full"
                   src={getYoutubeEmbedUrl(project.youtubeUrl)}
                   title={`${project.title} Demo`}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

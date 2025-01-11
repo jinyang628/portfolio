@@ -11,7 +11,7 @@ type MarkdownRendererProps = {
 export default function MarkdownRenderer({ note }: MarkdownRendererProps) {
   return (
     <Markdown
-      className="text-secondary-foreground prose prose-xl dark:prose-invert [&_code]:bg-zinc-900 [&_code]:text-white w-full max-w-none"
+      className="prose prose-xl w-full max-w-none text-secondary-foreground dark:prose-invert [&_code]:bg-zinc-900 [&_code]:text-white"
       components={{
         code: ({ children, className }) => {
           const isInline = !className;
@@ -25,7 +25,7 @@ export default function MarkdownRenderer({ note }: MarkdownRendererProps) {
               }}
               className={`${
                 isInline ? 'inline px-1.5 py-0.5' : 'block p-2'
-              } rounded-md cursor-pointer hover:bg-zinc-800 transition-colors relative group`}
+              } group relative cursor-pointer rounded-md transition-colors hover:bg-zinc-800`}
             >
               {content}
             </code>

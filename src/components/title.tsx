@@ -27,7 +27,7 @@ export default function Title({ showIntro, updateShowContent }: TitleProps) {
           delay: 30,
         }}
       />
-      <p className={`fade text-3xl mt-4 text-center ${showIntro ? 'opacity-100' : 'opacity-0'}`}>
+      <p className={`fade mt-4 text-center text-3xl ${showIntro ? 'opacity-100' : 'opacity-0'}`}>
         I take building very seriously.
       </p>
     </>

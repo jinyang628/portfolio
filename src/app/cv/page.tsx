@@ -43,7 +43,7 @@ export default function CV() {
   }
 
   return (
-    <div className="flex justify-center m-5">
+    <div className="m-5 flex justify-center">
       <ScreenshotSection imageSrcs={pdfState.imageSrcs} />
       <ScrollToTop />
     </div>

@@ -38,7 +38,7 @@
   "editor.formatOnSave": true,
   "eslint.format.enable": true,
   "files.insertFinalNewline": true,
-  "prettier.configPath": ".prettierrc",
+  "prettier.configPath": ".prettierrc.js",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.tsdk": "./node_modules/typescript/lib"
 }
