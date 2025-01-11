@@ -40,7 +40,7 @@ export default function NoteCards({ notes, selectedNoteId }: NoteCardsProps) {
   if (notes.length === 0) {
     return (
       <div className="flex h-full w-full items-center justify-center">
-        <l-spiral color="hsl(var(--primary))" size={200}></l-spiral>
+        <l-spiral color="hsl(var(--primary))" size={200} />
       </div>
     );
   }
@@ -51,7 +51,9 @@ export default function NoteCards({ notes, selectedNoteId }: NoteCardsProps) {
         <Card
           key={`card-${note.id}`}
           ref={(el) => {
-            if (el) cardRefs.current.set(note.id, el);
+            if (el) {
+              cardRefs.current.set(note.id, el);
+            }
           }}
           className="h-full w-full overflow-hidden bg-gradient-to-br from-primary/5 to-secondary/5 transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lg"
         >

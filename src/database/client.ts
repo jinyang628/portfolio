@@ -22,6 +22,7 @@ export async function getSupabaseClient(): Promise<SupabaseClient> {
     }
     supabaseClient = createClient(supabaseUrl, supabaseKey);
   }
+
   return supabaseClient;
 }
 
@@ -80,6 +81,7 @@ export async function POST<T extends TableName>(
   if (error) {
     throw error;
   }
+
   return insertedData as Row<T>[];
 }
 

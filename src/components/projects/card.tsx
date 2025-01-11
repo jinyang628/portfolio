@@ -18,6 +18,7 @@ type ProjectCardProps = {
 export default function ProjectCard({ project }: ProjectCardProps) {
   const githubBtnList = project.githubUrls.map((obj, idx) => {
     const githubInfo = githubInfoSchema.parse(obj);
+
     return (
       <Link
         key={`${project.title}-github-link-${idx}`}
@@ -35,6 +36,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   const getYoutubeEmbedUrl = (url: string) => {
     const videoId = url.split('v=')[1]?.split('&')[0];
+
     return `https://www.youtube.com/embed/${videoId}`;
   };
 

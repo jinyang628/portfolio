@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ArrowUp } from 'lucide-react';
 
@@ -15,6 +15,7 @@ export default function ScrollToTop() {
     };
 
     window.addEventListener('scroll', handleScroll);
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, [SCROLL_TOP_THRESHOLD]);
 
@@ -22,10 +23,12 @@ export default function ScrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  if (!showScrollTop) return null;
+  if (!showScrollTop) {
+    return null;
+  }
 
   return (
-    <Button onClick={scrollToTop} className="fixed bottom-8 right-8 rounded-full p-3" size="icon">
+    <Button className="fixed bottom-8 right-8 rounded-full p-3" size="icon" onClick={scrollToTop}>
       <ArrowUp className="h-4 w-4" />
     </Button>
   );

@@ -11,6 +11,11 @@ export default function Title({ showIntro, updateShowContent }: TitleProps) {
   return (
     <>
       <Typewriter
+        options={{
+          wrapperClassName: 'text-5xl flex justify-center mt-4',
+          cursor: '',
+          delay: 30,
+        }}
         onInit={(typewriter) => {
           typewriter
             .typeString(INTRO_TEXT)
@@ -20,11 +25,6 @@ export default function Title({ showIntro, updateShowContent }: TitleProps) {
               }, 100);
             })
             .start();
-        }}
-        options={{
-          wrapperClassName: 'text-5xl flex justify-center mt-4',
-          cursor: '',
-          delay: 30,
         }}
       />
       <p className={`fade mt-4 text-center text-3xl ${showIntro ? 'opacity-100' : 'opacity-0'}`}>

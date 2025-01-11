@@ -20,12 +20,12 @@ export default function MarkdownRenderer({ note }: MarkdownRendererProps) {
 
           return (
             <code
-              onClick={() => {
-                handleCopy(String(content), 'code snippet');
-              }}
               className={`${
                 isInline ? 'inline px-1.5 py-0.5' : 'block p-2'
               } group relative cursor-pointer rounded-md transition-colors hover:bg-zinc-800`}
+              onClick={() => {
+                handleCopy(String(content), 'code snippet');
+              }}
             >
               {content}
             </code>

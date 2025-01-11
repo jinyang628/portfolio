@@ -61,7 +61,7 @@ export default function NotesForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onConfirmationBtnClick)} className="space-y-8">
+      <form className="space-y-8" onSubmit={form.handleSubmit(onConfirmationBtnClick)}>
         <FormField
           control={form.control}
           name="category"

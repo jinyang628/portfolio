@@ -15,10 +15,12 @@ export async function get(input: GetRequest): Promise<Notes[] | Projects[]> {
     switch (input.tableName) {
       case tableNameEnum.Values.notes:
         return data as Notes[];
+
       case tableNameEnum.Values.projects:
         return data as Projects[];
       default:
         logger.error(`Invalid table name: ${input.tableName}`);
+
         return [];
     }
   } catch (error) {

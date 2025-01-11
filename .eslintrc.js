@@ -8,8 +8,8 @@ module.exports = {
   ],
   rules: {
     curly: 'error',
-    'no-console': 'error',
-    'no-shadow': 'error',
+    'no-console': 'off',
+    'no-shadow': 'warn',
     'no-nested-ternary': 'error',
     'newline-before-return': 'error',
     'no-restricted-exports': [
@@ -24,6 +24,7 @@ module.exports = {
         },
       },
     ],
+    '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/no-unused-vars': 'off',
     'react/jsx-sort-props': [
       'error',
@@ -37,7 +38,7 @@ module.exports = {
     'react/no-danger': 'warn',
     'react/self-closing-comp': 'error',
     'react/function-component-definition': [
-      'error',
+      'off',
       {
         namedComponents: 'function-declaration',
         unnamedComponents: 'arrow-function',

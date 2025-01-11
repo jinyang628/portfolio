@@ -42,6 +42,7 @@ export default function CategoryDropdown({
           );
         })
       : [];
+
   return (
     <div className="flex flex-col space-y-2">
       <Button

@@ -31,6 +31,7 @@ export async function GET() {
           }
 
           const buffer = await image.toBuffer();
+
           return `data:image/png;base64,${buffer.toString('base64')}`;
         }),
     );
@@ -38,6 +39,7 @@ export async function GET() {
     return NextResponse.json(pngFiles);
   } catch (error) {
     console.error('Error loading CV PNGs:', error);
+
     return NextResponse.json({ error: 'Failed to load images' }, { status: 500 });
   }
 }
