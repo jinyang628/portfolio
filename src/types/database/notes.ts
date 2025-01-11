@@ -34,7 +34,7 @@ export const zodNotesSchema = z.object({
 export type ZodNotes = z.infer<typeof zodNotesSchema>;
 
 export const defaultZodNotesValues: ZodNotes = {
-  category: 'git',
+  category: zodCategoryEnum.Values.algorithm,
   title: '',
   description: '',
 };

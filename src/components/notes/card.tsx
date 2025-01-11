@@ -1,13 +1,11 @@
 import { useEffect, useRef } from 'react';
-import Markdown from 'react-markdown';
 
 import type {} from 'ldrs';
 
+import MarkdownRenderer from '@/components/notes/markdown-renderer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 import { Notes } from '@/types/database/notes';
-
-import { handleCopy } from '@/lib/utils';
 
 type NoteCardsProps = {
   notes: Notes[];
@@ -61,28 +59,7 @@ export default function NoteCards({ notes, selectedNoteId }: NoteCardsProps) {
             <CardTitle className="text-2xl font-bold text-primary truncate">{note.title}</CardTitle>
           </CardHeader>
           <CardContent>
-            <Markdown
-              className="text-secondary-foreground prose prose-xl dark:prose-invert [&_code]:bg-zinc-900 [&_code]:text-white w-full max-w-none"
-              components={{
-                code: ({ children, className }) => {
-                  // Check if this is an inline code block (no language specified)
-                  const isInline = !className;
-
-                  return (
-                    <code
-                      onClick={() => {
-                        handleCopy(String(children), 'code snippet');
-                      }}
-                      className={`${isInline ? 'inline px-1.5 py-0.5' : 'block p-2'} rounded-md cursor-pointer hover:bg-zinc-800 transition-colors relative group`}
-                    >
-                      {children}
-                    </code>
-                  );
-                },
-              }}
-            >
-              {note.description}
-            </Markdown>
+            <MarkdownRenderer note={note} />
           </CardContent>
         </Card>
       ))}

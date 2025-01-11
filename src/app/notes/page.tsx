@@ -8,12 +8,14 @@ import NoteCards from '@/components/notes/card';
 import NotesSideBar from '@/components/notes/side-bar';
 import ScrollToTop from '@/components/shared/scroll-to-top';
 
-import { Category, Notes } from '@/types/database/notes';
+import { Category, Notes, zodCategoryEnum } from '@/types/database/notes';
 
 import { logger } from '@/lib/logger';
 
 export default function NotesPage() {
-  const [selectedCategory, setSelectedCategory] = useState<Category>('git');
+  const [selectedCategory, setSelectedCategory] = useState<Category>(
+    zodCategoryEnum.Values.algorithm,
+  );
   const [selectedNoteId, setSelectedNoteId] = useState<number | null>(null);
 
   const {
