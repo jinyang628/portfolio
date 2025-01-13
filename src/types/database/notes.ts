@@ -11,6 +11,7 @@ export type Category = Database['public']['Enums']['category'];
 
 export const zodCategoryEnum = z.enum([
   'algorithm',
+  'aws',
   'api',
   'clerk',
   'extension',

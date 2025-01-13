@@ -60,6 +60,8 @@ export type Database = {
     };
     Enums: {
       category:
+        | 'algorithm'
+        | 'aws'
         | 'fastapi'
         | 'git'
         | 'react'
@@ -71,8 +73,7 @@ export type Database = {
         | 'typescript'
         | 'zustand'
         | 'poetry'
-        | 'extension'
-        | 'algorithm';
+        | 'extension';
     };
     CompositeTypes: {
       [_ in never]: never;

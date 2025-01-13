@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BiMath } from 'react-icons/bi';
+import { FaAws } from 'react-icons/fa';
 import { IoExtensionPuzzleOutline, IoGitMergeSharp } from 'react-icons/io5';
 import {
   SiAiohttp,
@@ -59,6 +60,15 @@ export default function NotesSideBar({
               buttonText="Algorithm"
               buttonIcon={<BiMath className="side-nav-bar-icon" />}
               category={'algorithm'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
+            <CategoryDropdown
+              buttonText="AWS"
+              buttonIcon={<FaAws className="side-nav-bar-icon" />}
+              category={'aws'}
               notes={notes}
               selectedCategory={selectedCategory}
               onCategoryClick={onCategoryClick}
