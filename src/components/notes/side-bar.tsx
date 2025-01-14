@@ -148,9 +148,9 @@ export default function NotesSideBar({
               onNoteClick={onNoteClick}
             />
             <CategoryDropdown
-              buttonText="Supabase"
+              buttonText="Database"
               buttonIcon={<SiSupabase className="side-nav-bar-icon" />}
-              category={'supabase'}
+              category={'database'}
               notes={notes}
               selectedCategory={selectedCategory}
               onCategoryClick={onCategoryClick}
