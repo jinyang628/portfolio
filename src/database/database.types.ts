@@ -61,19 +61,20 @@ export type Database = {
     Enums: {
       category:
         | 'algorithm'
+        | 'api'
         | 'aws'
+        | 'clerk'
+        | 'extension'
         | 'fastapi'
         | 'git'
         | 'react'
-        | 'api'
-        | 'clerk'
         | 'supabase'
-        | 'vscode'
+        | 'poetry'
         | 'python'
         | 'typescript'
-        | 'zustand'
-        | 'poetry'
-        | 'extension';
+        | 'vercel'
+        | 'vscode'
+        | 'zustand';
     };
     CompositeTypes: {
       [_ in never]: never;
