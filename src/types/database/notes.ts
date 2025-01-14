@@ -20,6 +20,7 @@ export const zodCategoryEnum = z.enum([
   'react',
   'supabase',
   'typescript',
+  'vercel',
   'vscode',
   'poetry',
   'python',

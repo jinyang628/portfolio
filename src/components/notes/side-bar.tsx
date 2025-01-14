@@ -11,6 +11,7 @@ import {
   SiReact,
   SiSupabase,
   SiTypescript,
+  SiVercel,
   SiVisualstudiocode,
   SiXstate,
 } from 'react-icons/si';
@@ -159,6 +160,15 @@ export default function NotesSideBar({
               buttonText="TypeScript"
               buttonIcon={<SiTypescript className="side-nav-bar-icon" />}
               category={'typescript'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
+            <CategoryDropdown
+              buttonText="Vercel"
+              buttonIcon={<SiVercel className="side-nav-bar-icon" />}
+              category={'vercel'}
               notes={notes}
               selectedCategory={selectedCategory}
               onCategoryClick={onCategoryClick}
