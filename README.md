@@ -12,4 +12,4 @@ Let's have a chat!
 npx supabase gen types typescript --project-id "ghfvhtnuuzyqefrmhsxc" --schema public > src/database/database.types.ts
 ```
 
-## Convert [PDF CV to PNG](https://pdf2png.com/) (to avoid parsing the PDF during runtime)
+## Convert [PDF CV to PNG](https://www.freeconvert.com/pdf-to-png) (to avoid parsing the PDF during runtime)
