@@ -19,9 +19,10 @@ export default function NoteCards({ notes, selectedNoteId }: NoteCardsProps) {
     if (selectedNoteId !== null) {
       const selectedCard = cardRefs.current.get(selectedNoteId);
       if (selectedCard) {
-        selectedCard.scrollIntoView({
+        const rect = selectedCard.getBoundingClientRect();
+        window.scrollTo({
+          top: window.scrollY + rect.top - window.innerHeight / 2 + rect.height / 2,
           behavior: 'smooth',
-          block: 'center',
         });
 
         // Add animation class

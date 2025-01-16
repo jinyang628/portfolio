@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 const config = {
+  mode: 'jit',
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -71,6 +72,25 @@ const config = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            'code::before': {
+              content: '"\\00a0\\00a0"',
+            },
+            'code::after': {
+              content: '"\\00a0\\00a0"',
+            },
+            code: {
+              background: '#ffeff0',
+              wordWrap: 'break-word',
+              boxDecorationBreak: 'clone',
+              padding: '.1rem .3rem .2rem',
+              borderRadius: '.2rem',
+            },
+          },
+        },
       },
     },
   },
