@@ -73,6 +73,7 @@ export type Database = {
         | 'python'
         | 'typescript'
         | 'vercel'
+        | 'vim'
         | 'vscode'
         | 'zustand';
     };

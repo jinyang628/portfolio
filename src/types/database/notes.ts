@@ -21,6 +21,7 @@ export const zodCategoryEnum = z.enum([
   'react',
   'typescript',
   'vercel',
+  'vim',
   'vscode',
   'poetry',
   'python',

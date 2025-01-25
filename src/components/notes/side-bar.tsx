@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BiMath } from 'react-icons/bi';
-import { FaAws } from 'react-icons/fa';
+import { FaAws, FaVimeo } from 'react-icons/fa';
 import { IoExtensionPuzzleOutline, IoGitMergeSharp } from 'react-icons/io5';
 import {
   SiAiohttp,
@@ -169,6 +169,15 @@ export default function NotesSideBar({
               buttonText="Vercel"
               buttonIcon={<SiVercel className="side-nav-bar-icon" />}
               category={'vercel'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
+            <CategoryDropdown
+              buttonText="Vim"
+              buttonIcon={<FaVimeo className="side-nav-bar-icon" />}
+              category={'vim'}
               notes={notes}
               selectedCategory={selectedCategory}
               onCategoryClick={onCategoryClick}
