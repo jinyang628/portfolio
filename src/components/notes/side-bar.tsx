@@ -15,6 +15,7 @@ import {
   SiVisualstudiocode,
   SiXstate,
 } from 'react-icons/si';
+import { TbSql } from "react-icons/tb";
 
 import { checkIsAdmin } from '@/actions/admin';
 
@@ -151,6 +152,15 @@ export default function NotesSideBar({
               buttonText="Database"
               buttonIcon={<SiSupabase className="side-nav-bar-icon" />}
               category={'database'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
+            <CategoryDropdown
+              buttonText="SQL"
+              buttonIcon={<TbSql className="side-nav-bar-icon" />}
+              category={'sql'}
               notes={notes}
               selectedCategory={selectedCategory}
               onCategoryClick={onCategoryClick}

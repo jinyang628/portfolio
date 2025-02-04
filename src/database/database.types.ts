@@ -69,6 +69,7 @@ export type Database = {
         | 'fastapi'
         | 'git'
         | 'react'
+        | 'sql'
         | 'poetry'
         | 'python'
         | 'typescript'
