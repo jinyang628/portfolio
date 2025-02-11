@@ -18,6 +18,7 @@ export const zodCategoryEnum = z.enum([
   'extension',
   'fastapi',
   'git',
+  'onboarding',
   'react',
   'sql',
   'typescript',

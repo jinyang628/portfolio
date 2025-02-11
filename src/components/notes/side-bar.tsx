@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { BiMath } from 'react-icons/bi';
 import { FaAws, FaVimeo } from 'react-icons/fa';
 import { IoExtensionPuzzleOutline, IoGitMergeSharp } from 'react-icons/io5';
+import { MdOutlineQuestionMark } from 'react-icons/md';
 import {
   SiAiohttp,
   SiClerk,
@@ -15,7 +16,7 @@ import {
   SiVisualstudiocode,
   SiXstate,
 } from 'react-icons/si';
-import { TbSql } from "react-icons/tb";
+import { TbSql } from 'react-icons/tb';
 
 import { checkIsAdmin } from '@/actions/admin';
 
@@ -116,6 +117,15 @@ export default function NotesSideBar({
               buttonText="Git"
               buttonIcon={<IoGitMergeSharp className="side-nav-bar-icon" />}
               category={'git'}
+              notes={notes}
+              selectedCategory={selectedCategory}
+              onCategoryClick={onCategoryClick}
+              onNoteClick={onNoteClick}
+            />
+            <CategoryDropdown
+              buttonText="Onboarding"
+              buttonIcon={<MdOutlineQuestionMark className="side-nav-bar-icon" />}
+              category={'onboarding'}
               notes={notes}
               selectedCategory={selectedCategory}
               onCategoryClick={onCategoryClick}
