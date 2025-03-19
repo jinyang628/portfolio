@@ -49,7 +49,7 @@ export default function NotesPage() {
         onCategoryClick={onCategoryClick}
         onNoteClick={onNoteClick}
       />
-      <div className="mx-5 h-full w-full">
+      <div className="mx-5 h-full w-[calc(100%-300px)]">
         <NoteCards notes={notes} selectedNoteId={selectedNoteId} />
       </div>
       <ScrollToTop />
