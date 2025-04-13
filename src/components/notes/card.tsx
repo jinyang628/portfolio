@@ -1,10 +1,12 @@
 import { useEffect, useRef } from 'react';
 
+import { increment } from '@/actions/database/increment';
 import type {} from 'ldrs';
 
 import MarkdownRenderer from '@/components/notes/markdown-renderer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
+import { tableNameEnum } from '@/types/database/base';
 import { Notes } from '@/types/database/notes';
 
 type NoteCardsProps = {
@@ -57,6 +59,7 @@ export default function NoteCards({ notes, selectedNoteId }: NoteCardsProps) {
             }
           }}
           className="h-full w-full overflow-hidden bg-gradient-to-br from-primary/5 to-secondary/5 transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lg"
+          onClick={() => increment(note.id)}
         >
           <CardHeader className="pb-3">
             <CardTitle className="truncate text-2xl font-bold text-primary">{note.title}</CardTitle>

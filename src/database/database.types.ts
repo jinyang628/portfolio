@@ -5,18 +5,21 @@ export type Database = {
     Tables: {
       notes: {
         Row: {
+          copied_counter: number;
           category: Database['public']['Enums']['category'];
           description: string;
           id: number;
           title: string;
         };
         Insert: {
+          copied_counter?: number;
           category?: Database['public']['Enums']['category'];
           description: string;
           id?: number;
           title: string;
         };
         Update: {
+          copied_counter?: number;
           category?: Database['public']['Enums']['category'];
           description?: string;
           id?: number;

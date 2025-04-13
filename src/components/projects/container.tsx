@@ -4,7 +4,7 @@ import { get } from '@/actions/database/get';
 
 import ProjectCard from '@/components/projects/card';
 
-import { getRequestSchema } from '@/types/actions/database/get';
+import { filterRequestSchema } from '@/types/actions/database/filter';
 import { tableNameEnum } from '@/types/database/base';
 import { Projects } from '@/types/database/notes';
 
@@ -17,7 +17,7 @@ export default function ProjectsContainer({ showCards }: ProjectsContainerProps)
 
   useEffect(() => {
     const loadProjects = async () => {
-      const getRequest = getRequestSchema.parse({
+      const getRequest = filterRequestSchema.parse({
         tableName: tableNameEnum.Values.projects,
         filterConditions: {},
       });

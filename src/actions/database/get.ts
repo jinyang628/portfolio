@@ -2,13 +2,13 @@
 
 import { GET } from '@/database/client';
 
-import { GetRequest } from '@/types/actions/database/get';
+import { FilterRequest } from '@/types/actions/database/filter';
 import { tableNameEnum } from '@/types/database/base';
 import { Notes, Projects } from '@/types/database/notes';
 
 import { logger } from '@/lib/logger';
 
-export async function get(input: GetRequest): Promise<Notes[] | Projects[]> {
+export async function get(input: FilterRequest): Promise<Notes[] | Projects[]> {
   try {
     logger.info(`Server action get invoked on table: ${input.tableName}`);
     const data = await GET(input.tableName, input.filterConditions);
