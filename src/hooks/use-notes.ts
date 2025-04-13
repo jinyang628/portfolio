@@ -6,7 +6,7 @@ import { get } from '@/actions/database/get';
 import { post } from '@/actions/database/post';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
-import { getRequestSchema } from '@/types/actions/database/get';
+import { filterRequestSchema } from '@/types/actions/database/filter';
 import { postRequestSchema } from '@/types/actions/database/post';
 import { tableNameEnum } from '@/types/database/base';
 import { Category, Notes, ZodNotes } from '@/types/database/notes';
@@ -46,7 +46,7 @@ export default function useNotes({ id, category }: useNotesProps): useNotesOptio
         if (category) {
           filterConditions.category = category;
         }
-        const getRequest = getRequestSchema.parse({
+        const getRequest = filterRequestSchema.parse({
           tableName: tableNameEnum.Values.notes,
           filterConditions: filterConditions,
         });
