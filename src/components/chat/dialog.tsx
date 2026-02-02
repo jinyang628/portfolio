@@ -1,6 +1,7 @@
 'use client';
 
 import { useId } from 'react';
+import Markdown from 'react-markdown';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -15,7 +16,7 @@ import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Textarea } from '@/components/ui/textarea';
 
-import { ChatAttachment, ChatMessage } from '@/types/chat';
+import { ChatAttachment, ChatMessage, roleEnum } from '@/types/chat';
 
 import { CHAT_ACCEPT_ATTR, formatBytes } from '@/lib/utils';
 
@@ -55,48 +56,46 @@ export default function ChatDialog({
         </DialogHeader>
 
         <div className="px-5 py-4">
-          {messages.length === 0 ? (
-            <div className="rounded-lg border border-dashed bg-muted/30 p-6 text-sm text-muted-foreground">
-              Ask your first question to start the chat.
-            </div>
-          ) : (
-            <ScrollArea className="h-[60vh] pr-3">
-              <div className="space-y-3">
-                {messages.map((m) => (
+          <ScrollArea className="h-[60vh] pr-3">
+            <div className="space-y-3">
+              {messages.map((m) => (
+                <div
+                  key={m.id}
+                  className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
                   <div
-                    key={m.id}
-                    className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                    className={`max-w-[85%] rounded-xl border px-4 py-3 text-sm ${
+                      m.role === 'user'
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-muted text-foreground'
+                    }`}
                   >
-                    <div
-                      className={`max-w-[85%] rounded-xl border px-4 py-3 text-sm ${
-                        m.role === 'user'
-                          ? 'bg-primary text-primary-foreground'
-                          : 'bg-muted text-foreground'
-                      }`}
-                    >
-                      {m.role === 'assistant' && m.content.trim().length === 0 ? (
-                        <div className="text-muted-foreground">Response will appear here.</div>
-                      ) : m.content.trim().length === 0 ? (
-                        <div className="text-muted-foreground">Attachment sent.</div>
-                      ) : (
-                        <div className="whitespace-pre-wrap">{m.content}</div>
-                      )}
+                    {m.role === roleEnum.Values.assistant && m.content.trim().length === 0 ? (
+                      <div className="text-muted-foreground">Response will appear here.</div>
+                    ) : m.content.trim().length === 0 ? (
+                      <div className="text-muted-foreground">Attachment sent.</div>
+                    ) : m.role === roleEnum.Values.assistant ? (
+                      <Markdown className="prose prose-sm max-w-none dark:prose-invert prose-p:my-1 prose-code:rounded prose-code:bg-background/50 prose-code:px-1 prose-code:py-0.5 prose-pre:my-2 prose-ol:my-1 prose-ul:my-1 prose-li:my-0">
+                        {m.content}
+                      </Markdown>
+                    ) : (
+                      <div className="whitespace-pre-wrap">{m.content}</div>
+                    )}
 
-                      {m.attachment && (
-                        <div className="mt-2 rounded-lg border bg-background/40 px-3 py-2 text-xs">
-                          <span className="font-medium">Attachment:</span>{' '}
-                          <span className="break-all">
-                            {m.attachment.name} ({formatBytes(m.attachment.size)})
-                          </span>
-                        </div>
-                      )}
-                    </div>
+                    {m.attachment && (
+                      <div className="mt-2 rounded-lg border bg-background/40 px-3 py-2 text-xs">
+                        <span className="font-medium">Attachment:</span>{' '}
+                        <span className="break-all">
+                          {m.attachment.name} ({formatBytes(m.attachment.size)})
+                        </span>
+                      </div>
+                    )}
                   </div>
-                ))}
-                <div ref={messagesEndRef} />
-              </div>
-            </ScrollArea>
-          )}
+                </div>
+              ))}
+              <div ref={messagesEndRef} />
+            </div>
+          </ScrollArea>
         </div>
 
         <DialogFooter className="flex-col items-stretch gap-2 border-t px-5 py-4 sm:flex-col">
