@@ -84,27 +84,17 @@ export default function ChatDialog({
                     ) : (
                       <div className="whitespace-pre-wrap">{m.content}</div>
                     )}
-
-                    {isWaitingForLlmResponse && <div className="my-5">Thinking...</div>}
-
-                    {m.attachment && (
-                      <div className="mt-2 rounded-lg border bg-background/40 px-3 py-2 text-xs">
-                        <span className="font-medium">Attachment:</span>{' '}
-                        <span className="break-all">
-                          {m.attachment.name} ({formatBytes(m.attachment.size)})
-                        </span>
-                      </div>
-                    )}
                   </div>
                 </div>
               ))}
+              {isWaitingForLlmResponse && <div className="my-5">Thinking...</div>}
               <div ref={messagesEndRef} />
             </div>
           </ScrollArea>
         </div>
 
         <DialogFooter className="flex-col items-stretch gap-2 border-t px-5 py-4 sm:flex-col">
-          <div className="flex items-start gap-2">
+          <div className="flex items-center gap-2">
             <div className="flex-1">
               <Textarea
                 ref={overlayInputRef}
@@ -121,7 +111,7 @@ export default function ChatDialog({
               />
             </div>
 
-            <div className="flex shrink-0 items-center gap-2">
+            <div className="flex shrink-0 gap-2">
               <Input
                 id={useId()}
                 type="file"
