@@ -9,7 +9,6 @@ module.exports = {
     '^@/components/(.*)$',
     '^@/types/(.*)$',
     '^@/lib/(.*)$',
-    '^@/styles/(.*)$',
     '^[./]',
   ],
   importOrderSeparation: true,

@@ -49,7 +49,7 @@ export function handleCopy(text: string, targetName: string) {
       });
     })
     .catch((err) => {
-      // eslint-disable-next-line no-console
+       
       console.error('Failed to copy text: ', err);
       toast({
         title: 'Copy failed',
