@@ -48,7 +48,7 @@ export default function ChatDialog({
 }: ChatDialogProps) {
   return (
     <Dialog open={isOverlayOpen} onOpenChange={onOpenChange}>
-      <DialogContent>
+      <DialogContent className="max-w-[720px]">
         <DialogHeader>
           <DialogTitle>Chat</DialogTitle>
           <DialogDescription>Ask follow-ups here, or click outside to close.</DialogDescription>
