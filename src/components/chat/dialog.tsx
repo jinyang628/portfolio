@@ -51,6 +51,8 @@ export default function ChatDialog({
   onFileUpload,
   onOpenChange,
 }: ChatDialogProps) {
+  const fileInputId = useId();
+
   return (
     <Dialog open={isOverlayOpen} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-[720px]">
@@ -113,7 +115,6 @@ export default function ChatDialog({
 
             <div className="flex shrink-0 gap-2">
               <Input
-                id={useId()}
                 type="file"
                 accept={CHAT_ACCEPT_ATTR}
                 className="hidden"
@@ -122,11 +123,22 @@ export default function ChatDialog({
                   e.currentTarget.value = '';
                 }}
               />
-              <Button asChild variant="outline" type="button" title="Attach PDF/PNG/JPG">
-                <Label htmlFor={useId()} className="cursor-pointer">
+              <Input
+                id={fileInputId}
+                type="file"
+                accept={CHAT_ACCEPT_ATTR}
+                className="hidden"
+                onChange={(e) => {
+                  onFileUpload(e.currentTarget.files?.[0] ?? null);
+                  e.currentTarget.value = '';
+                }}
+              />
+              <Button asChild variant="outline" type="button" title="Attach PDF/WORD">
+                <Label htmlFor={fileInputId} className="cursor-pointer">
                   Upload
                 </Label>
               </Button>
+
               <Button
                 type="button"
                 onClick={onSubmit}

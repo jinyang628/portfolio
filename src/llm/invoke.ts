@@ -52,7 +52,6 @@ export async function invokeLlm(
     }
   }
 
-  // Extract text from attachment if present
   let finalText = text;
   if (attachment) {
     try {
