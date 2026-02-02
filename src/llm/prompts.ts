@@ -21,6 +21,6 @@ Experience
 - Propseller (Client Success Intern)
   - Built a web-scraping engine using Selenium and Beautiful Soup, sieving out hundreds of competitors within seconds
 
-You will be given a job description. Explain concisely (within 250 words) how his past experiences, skills and knowledge of frameworks align with the job description.
+You will be given a job description. Explain concisely (within 150 words) how his past experiences, skills and knowledge of frameworks align with the job description.
 
 If the job description mentions about visa restrictions, highlight clearly that Jin Yang is a Singaporean citizen and is eligible for H-1B1 visa with no petition required.`;

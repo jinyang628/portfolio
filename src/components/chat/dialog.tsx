@@ -9,12 +9,12 @@ import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Textarea } from '@/components/ui/textarea';
 
@@ -55,8 +55,7 @@ export default function ChatDialog({
     <Dialog open={isOverlayOpen} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-[720px]">
         <DialogHeader>
-          <DialogTitle>Chat</DialogTitle>
-          <DialogDescription>Ask follow-ups here, or click outside to close.</DialogDescription>
+          <DialogTitle>Jin Yang&apos;s Compatibility</DialogTitle>
         </DialogHeader>
 
         <div className="px-5 py-4">
@@ -86,9 +85,7 @@ export default function ChatDialog({
                       <div className="whitespace-pre-wrap">{m.content}</div>
                     )}
 
-                    {isWaitingForLlmResponse && (
-                      <div className="text-muted-foreground">Thinking...</div>
-                    )}
+                    {isWaitingForLlmResponse && <div className="my-5">Thinking...</div>}
 
                     {m.attachment && (
                       <div className="mt-2 rounded-lg border bg-background/40 px-3 py-2 text-xs">
@@ -122,11 +119,6 @@ export default function ChatDialog({
                 placeholder="Ask a follow-up…"
                 className="min-h-[44px]"
               />
-
-              <div className="mt-1 text-xs text-muted-foreground">
-                Press <span className="font-medium text-foreground">Enter</span> to send,{' '}
-                <span className="font-medium text-foreground">Shift+Enter</span> for a new line.
-              </div>
             </div>
 
             <div className="flex shrink-0 items-center gap-2">
@@ -141,9 +133,9 @@ export default function ChatDialog({
                 }}
               />
               <Button asChild variant="outline" type="button" title="Attach PDF/PNG/JPG">
-                <label htmlFor={useId()} className="cursor-pointer">
+                <Label htmlFor={useId()} className="cursor-pointer">
                   Upload
-                </label>
+                </Label>
               </Button>
               <Button
                 type="button"

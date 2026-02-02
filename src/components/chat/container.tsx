@@ -62,6 +62,15 @@ export default function ChatContainer({ showChat }: ChatContainerProps) {
     if (!canSubmit) return;
     const userText = draft.trim();
     setDraft('');
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: crypto.randomUUID(),
+        role: roleEnum.Values.user,
+        content: userText,
+        attachment: attachment,
+      },
+    ]);
     if (!isOverlayOpen) setIsOverlayOpen(true);
     setIsWaitingForLlmResponse(true);
 
