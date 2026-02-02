@@ -40,6 +40,15 @@ export default function ChatContainer({ showChat }: ChatContainerProps) {
     return draft.trim().length > 0 || Boolean(attachmentMeta);
   }, [draft, attachmentMeta]);
 
+  const handleOpenChange = (open: boolean) => {
+    setIsOverlayOpen(open);
+    if (!open) {
+      setDraft('');
+      setAttachment(null);
+      setMessages([]);
+    }
+  };
+
   const handlePickFile = (file: File | null) => {
     if (!file) {
       setAttachment(null);
@@ -173,7 +182,7 @@ export default function ChatContainer({ showChat }: ChatContainerProps) {
         onInputChange={setDraft}
         onSubmit={submit}
         onFileUpload={handlePickFile}
-        onOpenChange={setIsOverlayOpen}
+        onOpenChange={handleOpenChange}
       />
     </>
   );

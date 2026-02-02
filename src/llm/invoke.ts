@@ -80,7 +80,7 @@ export async function invokeLlm(
     })),
     { role: roleEnum.Values.user, content: finalText },
   ];
-
+  console.log(newMessages);
   try {
     const llmResponse = await client.chat.completions.create({
       model: 'openrouter/free',
