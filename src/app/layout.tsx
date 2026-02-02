@@ -3,13 +3,13 @@ import { Inter } from 'next/font/google';
 
 import { Suspense } from 'react';
 
+import '@/styles/globals.css';
+
 import HeaderButtons from '@/components/shared/header/buttons';
 import PageLoader from '@/components/shared/page-loading-indicator';
 import { QueryProvider } from '@/components/shared/query-provider';
 import { ThemeProvider } from '@/components/shared/theme/provider';
 import { Toaster } from '@/components/ui/toaster';
-
-import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 

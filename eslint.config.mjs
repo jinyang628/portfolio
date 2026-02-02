@@ -1,8 +1,8 @@
-import { defineConfig } from 'eslint/config';
-
-import unusedImports from 'eslint-plugin-unused-imports';
 import nextVitals from 'eslint-config-next/core-web-vitals';
 import nextTs from 'eslint-config-next/typescript';
+
+import unusedImports from 'eslint-plugin-unused-imports';
+import { defineConfig } from 'eslint/config';
 
 const eslintConfig = defineConfig([
   ...nextVitals,

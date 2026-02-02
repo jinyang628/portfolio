@@ -2,17 +2,20 @@
 
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 
+import { invokeLlm } from '@/llm/invoke';
+
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-
-
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 import { ChatAttachment, ChatMessage, roleEnum } from '@/types/chat';
 
 import { CHAT_ACCEPTED_FILE_TYPES, CHAT_ACCEPT_ATTR, formatBytes } from '@/lib/utils';
 
 import ChatDialog from './dialog';
+
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 
 interface ChatContainerProps {
   showChat: boolean;
@@ -47,33 +50,36 @@ export default function ChatContainer({ showChat }: ChatContainerProps) {
       setAttachment(null);
       return;
     }
+    if (file.size > MAX_FILE_SIZE) {
+      setAttachment(null);
+      return;
+    }
     setAttachment(file);
   };
 
-  const submit = () => {
+  const submit = async () => {
     if (!canSubmit) return;
+    console.log('submit', draft, attachment, messages);
+    try {
+      const userText = draft.trim();
+      const llmResponse = await invokeLlm(userText, attachment, messages);
+      setDraft('');
+      setAttachment(null);
 
-    const userText = draft.trim();
-    const userMessage: ChatMessage = {
-      id: crypto.randomUUID(),
-      role: roleEnum.Values.user,
-      content: userText,
-      attachment: attachmentMeta ?? null,
-    };
+      if (!isOverlayOpen) setIsOverlayOpen(true);
 
-    setDraft('');
-    setAttachment(null);
-
-    if (!isOverlayOpen) setIsOverlayOpen(true);
-
-    // Placeholder assistant message slot (intentionally empty until you wire an LLM).
-    const assistantMessage: ChatMessage = {
-      id: crypto.randomUUID(),
-      role: roleEnum.Values.assistant,
-      content: '',
-      attachment: null,
-    };
-    setMessages((prev) => [...prev, userMessage, assistantMessage]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          role: roleEnum.Values.assistant,
+          content: llmResponse,
+          attachment: null,
+        },
+      ]);
+    } catch (error) {
+      console.error('Error submitting chat:', error);
+    }
   };
 
   useEffect(() => {
@@ -103,7 +109,7 @@ export default function ChatContainer({ showChat }: ChatContainerProps) {
                     submit();
                   }
                 }}
-                placeholder="Drop the job description — see how my experience aligns!"
+                placeholder="Paste/Upload the job description — see how my experience aligns!"
                 className="h-10"
               />
             </div>
@@ -118,10 +124,10 @@ export default function ChatContainer({ showChat }: ChatContainerProps) {
                 e.currentTarget.value = '';
               }}
             />
-            <Button asChild variant="outline" type="button" title="Attach PDF/PNG/JPG">
-              <label htmlFor={fileInputId} className="cursor-pointer">
+            <Button asChild variant="outline" type="button" title="Attach PDF/WORD">
+              <Label htmlFor={fileInputId} className="cursor-pointer">
                 Upload
-              </label>
+              </Label>
             </Button>
 
             <Button type="button" onClick={submit} disabled={!canSubmit}>
