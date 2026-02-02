@@ -6,7 +6,6 @@ import type {} from 'ldrs';
 import MarkdownRenderer from '@/components/notes/markdown-renderer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-import { tableNameEnum } from '@/types/database/base';
 import { Notes } from '@/types/database/notes';
 
 type NoteCardsProps = {

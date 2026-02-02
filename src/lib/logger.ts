@@ -1,7 +1,6 @@
 type LogLevel = 'info' | 'warn' | 'error';
 class Logger {
   private logWithLevel(level: LogLevel, message: string, args?: string | object | '') {
-    // eslint-disable-next-line no-console
     console[level](`[${level.toUpperCase()}] ${message} ${args ? args : ''}`);
   }
 

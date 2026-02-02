@@ -16,9 +16,8 @@ interface useNotesOptions {
   loading: boolean;
   successMessage: string;
   error: Error | null;
-  refetch: () => Promise<any>;
-  postNotesMutation: any;
-  //   updateProfileMutation: any;
+  refetch: () => Promise<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
+  postNotesMutation: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 interface useNotesProps {
@@ -82,25 +81,6 @@ export default function useNotes({ id, category }: useNotesProps): useNotesOptio
     },
   });
 
-  //   const updateMutation = useMutation({
-  //     mutationFn: async (profile: Profile) =>
-  //       sendProfile(profile, actionEnum.Values.update),
-  //     mutationKey: ["updateProfile"],
-  //     onMutate: async (profile: Profile) => {
-  //       await queryClient.cancelQueries({ queryKey: ["loadProfile"] });
-  //       queryClient.setQueryData<Profile>(["loadProfile"], profile);
-  //       return profile;
-  //     },
-  //     onSuccess: (data, profile, context) => {
-  //       setSuccessMessage("Successfully updated profile");
-  //       return data;
-  //     },
-  //     onError: (err, profile, context) => {
-  //       setMutationError(new Error("Failed to update profile"));
-  //       queryClient.setQueryData<Profile>(["loadProfile"], profile);
-  //     },
-  //   });
-
   return {
     data: data || [],
     loading: isLoading,
@@ -108,6 +88,5 @@ export default function useNotes({ id, category }: useNotesProps): useNotesOptio
     error: queryError || error,
     refetch,
     postNotesMutation: postMutation,
-    // updateProfileMutation: updateMutation,
   };
 }

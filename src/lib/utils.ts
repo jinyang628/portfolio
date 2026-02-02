@@ -49,7 +49,6 @@ export function handleCopy(text: string, targetName: string) {
       });
     })
     .catch((err) => {
-      // eslint-disable-next-line no-console
       console.error('Failed to copy text: ', err);
       toast({
         title: 'Copy failed',
@@ -59,3 +58,20 @@ export function handleCopy(text: string, targetName: string) {
       });
     });
 }
+
+export function formatBytes(bytes: number): string {
+  if (!Number.isFinite(bytes) || bytes <= 0) return '0 B';
+  const units = ['B', 'KB', 'MB', 'GB'];
+  const power = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+  const value = bytes / Math.pow(1024, power);
+  return `${value >= 10 || power === 0 ? Math.round(value) : value.toFixed(1)} ${units[power]}`;
+}
+
+export const CHAT_ACCEPTED_FILE_TYPES = [
+  'application/pdf',
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+];
+
+export const CHAT_ACCEPT_ATTR =
+  '.pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document';
