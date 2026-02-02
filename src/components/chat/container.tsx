@@ -27,6 +27,7 @@ export default function ChatContainer({ showChat }: ChatContainerProps) {
   const [draft, setDraft] = useState<string>('');
   const [attachment, setAttachment] = useState<File | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [isWaitingForLlmResponse, setIsWaitingForLlmResponse] = useState<boolean>(false);
   const overlayInputRef = useRef<HTMLTextAreaElement | null>(null);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
@@ -59,15 +60,14 @@ export default function ChatContainer({ showChat }: ChatContainerProps) {
 
   const submit = async () => {
     if (!canSubmit) return;
-    console.log('submit', draft, attachment, messages);
+    const userText = draft.trim();
+    setDraft('');
+    if (!isOverlayOpen) setIsOverlayOpen(true);
+    setIsWaitingForLlmResponse(true);
+
     try {
-      const userText = draft.trim();
       const llmResponse = await invokeLlm(userText, attachment, messages);
-      setDraft('');
       setAttachment(null);
-
-      if (!isOverlayOpen) setIsOverlayOpen(true);
-
       setMessages((prev) => [
         ...prev,
         {
@@ -79,6 +79,8 @@ export default function ChatContainer({ showChat }: ChatContainerProps) {
       ]);
     } catch (error) {
       console.error('Error submitting chat:', error);
+    } finally {
+      setIsWaitingForLlmResponse(false);
     }
   };
 
@@ -156,6 +158,7 @@ export default function ChatContainer({ showChat }: ChatContainerProps) {
         messagesEndRef={messagesEndRef}
         overlayInputRef={overlayInputRef}
         isOverlayOpen={isOverlayOpen}
+        isWaitingForLlmResponse={isWaitingForLlmResponse}
         draft={draft}
         canSubmit={canSubmit}
         onInputChange={setDraft}

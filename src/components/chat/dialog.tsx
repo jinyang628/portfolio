@@ -3,6 +3,8 @@
 import { useId } from 'react';
 import Markdown from 'react-markdown';
 
+import { Loader2 } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -26,6 +28,7 @@ interface ChatDialogProps {
   messagesEndRef: React.RefObject<HTMLDivElement>;
   overlayInputRef: React.RefObject<HTMLTextAreaElement>;
   isOverlayOpen: boolean;
+  isWaitingForLlmResponse: boolean;
   draft: string;
   canSubmit: boolean;
   onInputChange: (input: string) => void;
@@ -40,6 +43,7 @@ export default function ChatDialog({
   messagesEndRef,
   overlayInputRef,
   isOverlayOpen,
+  isWaitingForLlmResponse,
   draft,
   canSubmit,
   onInputChange,
@@ -82,6 +86,10 @@ export default function ChatDialog({
                       <div className="whitespace-pre-wrap">{m.content}</div>
                     )}
 
+                    {isWaitingForLlmResponse && (
+                      <div className="text-muted-foreground">Thinking...</div>
+                    )}
+
                     {m.attachment && (
                       <div className="mt-2 rounded-lg border bg-background/40 px-3 py-2 text-xs">
                         <span className="font-medium">Attachment:</span>{' '}
@@ -114,6 +122,7 @@ export default function ChatDialog({
                 placeholder="Ask a follow-up…"
                 className="min-h-[44px]"
               />
+
               <div className="mt-1 text-xs text-muted-foreground">
                 Press <span className="font-medium text-foreground">Enter</span> to send,{' '}
                 <span className="font-medium text-foreground">Shift+Enter</span> for a new line.
@@ -136,8 +145,12 @@ export default function ChatDialog({
                   Upload
                 </label>
               </Button>
-              <Button type="button" onClick={onSubmit} disabled={!canSubmit}>
-                Enter
+              <Button
+                type="button"
+                onClick={onSubmit}
+                disabled={!canSubmit || isWaitingForLlmResponse}
+              >
+                {isWaitingForLlmResponse ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Enter'}
               </Button>
             </div>
           </div>
