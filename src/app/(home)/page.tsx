@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 
+import ChatContainer from '@/components/chat/container';
 import ProjectsContainer from '@/components/projects/container';
 import ScrollToTop from '@/components/shared/scroll-to-top';
 import Title from '@/components/title';
-import ChatContainer from '@/components/chat/container';
 
 export default function Home() {
   const [showIntro, setShowIntro] = useState<boolean>(false);

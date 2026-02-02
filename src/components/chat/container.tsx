@@ -18,18 +18,13 @@ import { Textarea } from '@/components/ui/textarea';
 
 import { ChatAttachment, ChatMessage, roleEnum } from '@/types/chat';
 
-import { CHAT_ACCEPT_ATTR, CHAT_ACCEPTED_FILE_TYPES, formatBytes } from '@/lib/utils';
+import { CHAT_ACCEPTED_FILE_TYPES, CHAT_ACCEPT_ATTR, formatBytes } from '@/lib/utils';
 
 import ChatDialog from './dialog';
-
-
-
 
 interface ChatContainerProps {
   showChat: boolean;
 }
-
-
 
 export default function ChatContainer({ showChat }: ChatContainerProps) {
   const fileInputId = useId();
@@ -54,7 +49,9 @@ export default function ChatContainer({ showChat }: ChatContainerProps) {
       setAttachment(null);
       return;
     }
-    if (!CHAT_ACCEPTED_FILE_TYPES.includes(file.type as (typeof CHAT_ACCEPTED_FILE_TYPES)[number])) {
+    if (
+      !CHAT_ACCEPTED_FILE_TYPES.includes(file.type as (typeof CHAT_ACCEPTED_FILE_TYPES)[number])
+    ) {
       setAttachment(null);
       return;
     }
