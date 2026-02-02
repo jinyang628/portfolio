@@ -103,7 +103,7 @@ export default function ChatContainer({ showChat }: ChatContainerProps) {
                     submit();
                   }
                 }}
-                placeholder="Ask a question…"
+                placeholder="Drop the job description — see how my experience aligns!"
                 className="h-10"
               />
             </div>
