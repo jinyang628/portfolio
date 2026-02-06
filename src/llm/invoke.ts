@@ -1,9 +1,11 @@
 'use server';
 
 import { SYSTEM_PROMPT } from '@/llm/prompts';
+import { promises as fs } from 'fs';
 import mammoth from 'mammoth';
 import OpenAI from 'openai';
-import pdf from 'pdf-parse';
+import PDFParser from 'pdf2json';
+import { v4 as uuidv4 } from 'uuid';
 
 import { ChatMessage, roleEnum } from '@/types/chat';
 
@@ -29,8 +31,23 @@ async function extractTextFromFile(file: File): Promise<string> {
   }
 
   if (file.type === 'application/pdf') {
-    const data = await pdf(buffer);
-    return data.text;
+    const fileName = uuidv4();
+    const tempFilePath = `/tmp/${fileName}.pdf`;
+    await fs.writeFile(tempFilePath, new Uint8Array(buffer));
+
+    const pdfParser = new (PDFParser as any)(null, 1);
+
+    const parsedText = await new Promise<string>((resolve, reject) => {
+      pdfParser.on('pdfParser_dataError', (errData: any) => console.log(errData.parserError));
+      pdfParser.on('pdfParser_dataReady', () => {
+        resolve(pdfParser.getRawTextContent());
+      });
+      pdfParser.loadPDF(tempFilePath);
+    });
+
+    await fs.unlink(tempFilePath).catch(() => {});
+
+    return parsedText;
   }
 
   throw new Error('Unsupported file type');
