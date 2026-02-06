@@ -12,10 +12,12 @@ import { ChatMessage, roleEnum } from '@/types/chat';
 
 import { CHAT_ACCEPTED_FILE_TYPES, formatBytes } from '@/lib/utils';
 
-const client = new OpenAI({
+const openRouterClient = new OpenAI({
   baseURL: 'https://openrouter.ai/api/v1',
   apiKey: process.env.OPEN_ROUTER_API_KEY,
 });
+
+const openAiClient = new OpenAI();
 
 async function extractTextFromFile(file: File): Promise<string> {
   const arrayBuffer = await file.arrayBuffer();
@@ -86,6 +88,24 @@ export async function invokeLlm(
     }
   }
 
+  try {
+    const moderationLlmResponse = await openAiClient.moderations.create(
+      {
+        model: 'omni-moderation-latest',
+        input: finalText,
+      },
+      {
+        timeout: LLM_TIMEOUT,
+      },
+    );
+    if (moderationLlmResponse.results[0].flagged) {
+      return 'Your input is flagged by the moderation model. Please do not abuse this feature :(';
+    }
+  } catch (error) {
+    console.error('Moderation error:', error);
+    throw new Error('Failed to moderate the input text');
+  }
+
   const newMessages = [
     { role: roleEnum.Values.system, content: SYSTEM_PROMPT },
     ...messages.map((msg) => ({
@@ -96,7 +116,7 @@ export async function invokeLlm(
   ];
   console.log(newMessages);
   try {
-    const llmResponse = await client.chat.completions.create(
+    const llmResponse = await openRouterClient.chat.completions.create(
       {
         model: 'openrouter/free',
         messages: newMessages,
