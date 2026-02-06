@@ -3,7 +3,7 @@
 import { SYSTEM_PROMPT } from '@/llm/prompts';
 import mammoth from 'mammoth';
 import OpenAI from 'openai';
-import { PDFParse } from 'pdf-parse';
+import pdf from 'pdf-parse';
 
 import { ChatMessage, roleEnum } from '@/types/chat';
 
@@ -29,10 +29,8 @@ async function extractTextFromFile(file: File): Promise<string> {
   }
 
   if (file.type === 'application/pdf') {
-    const parser = new PDFParse({ data: new Uint8Array(buffer) });
-    const result = await parser.getText();
-    await parser.destroy();
-    return result.text;
+    const data = await pdf(buffer);
+    return data.text;
   }
 
   throw new Error('Unsupported file type');
