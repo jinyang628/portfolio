@@ -1,5 +1,6 @@
 'use server';
 
+import { LLM_TIMEOUT, MAX_FILE_SIZE } from '@/constants/llm';
 import { SYSTEM_PROMPT } from '@/llm/prompts';
 import { promises as fs } from 'fs';
 import mammoth from 'mammoth';
@@ -9,14 +10,12 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { ChatMessage, roleEnum } from '@/types/chat';
 
-import { CHAT_ACCEPTED_FILE_TYPES } from '@/lib/utils';
+import { CHAT_ACCEPTED_FILE_TYPES, formatBytes } from '@/lib/utils';
 
 const client = new OpenAI({
   baseURL: 'https://openrouter.ai/api/v1',
   apiKey: process.env.OPEN_ROUTER_API_KEY,
 });
-
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 
 async function extractTextFromFile(file: File): Promise<string> {
   const arrayBuffer = await file.arrayBuffer();
@@ -60,7 +59,7 @@ export async function invokeLlm(
 ): Promise<string> {
   if (attachment) {
     if (attachment.size > MAX_FILE_SIZE) {
-      throw new Error('File size exceeds 10MB limit');
+      throw new Error(`File size exceeds ${formatBytes(MAX_FILE_SIZE)} limit`);
     }
     if (!CHAT_ACCEPTED_FILE_TYPES.includes(attachment.type)) {
       throw new Error('Only PDF and Word documents (.pdf, .docx, .doc) are supported');
@@ -97,10 +96,15 @@ export async function invokeLlm(
   ];
   console.log(newMessages);
   try {
-    const llmResponse = await client.chat.completions.create({
-      model: 'openrouter/free',
-      messages: newMessages,
-    });
+    const llmResponse = await client.chat.completions.create(
+      {
+        model: 'openrouter/free',
+        messages: newMessages,
+      },
+      {
+        timeout: LLM_TIMEOUT,
+      },
+    );
 
     return llmResponse.choices[0].message.content || '';
   } catch (error) {
